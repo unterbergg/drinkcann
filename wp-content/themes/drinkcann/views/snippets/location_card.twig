@@ -1,0 +1,26 @@
+<div class="text-center border p-3 pt-10 border-purple  flex flex-col items-center border-2 rounded-3xl" style="position: relative; padding-bottom: 5rem;">
+
+        <small class="text-xs inline border p-3 border-purple center w-auto border-1 rounded-xl">{{ location_distance }} MILES</small>
+
+
+
+    <h3 class="items-center mt-4 h5 text-purple">{{ location_title }}</h3>
+
+
+    {% if location_type != 'delivery' %}
+        <p class="mt-2 mb-2 text-purple text-sm">
+            {{location_address }}
+        </p>
+
+
+
+
+    {% endif %}
+
+    <h4 class="p text-purple mb-4">{{ location_phone }}</h4>
+
+
+    <div class="flex justify-center {% if type == 'delivery' %}mb-4 {% endif %}" style="position: absolute; bottom: 1rem;">
+        {% include 'snippets/find-a-cann-button.twig' with { class: 'location-card', 'bg_color_class' : 'location-card', 'is_button': false, 'text_wrapper_js': 'data-js-grassdoor-product-cta-text', 'data_js':'data-js-grassdoor-product-cta','id': product.grassdoor_product_id, 'is_bundle': product.grassdoor_product_is_bundle, 'bg_color': section.text_color|default('#5E609D'), 'text_color': cta_color, 'link': { 'title': 'Visit Website', 'url': location_website } } %}
+    </div>
+</div>

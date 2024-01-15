@@ -1,0 +1,14 @@
+{
+    "atlascode.bitbucket.enabled": false,
+    "atlascode.jira.jqlList": [
+        {
+            "id": "04ffb507-5192-48fb-9fad-367824d1e193",
+            "siteId": "adeaa3f8-0893-42f8-8ac0-935e50d96817",
+            "name": "CANN",
+            "query": "project = \"CANN\" ORDER BY created DESC",
+            "enabled": true,
+            "monitor": true
+        }
+    ],
+    "atlascode.jira.startWorkBranchTemplate.customPrefixes": []
+}

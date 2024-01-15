@@ -1,0 +1,122 @@
+<style>
+    [data-id="{{ section.acf_fc_layout }}-{{ loop.index0 }}"] .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+        background-color: rgb({% for color in section.pagination_bar_color %}{{ color }}{% if loop.last %}{% else %},{% endif %}{% endfor %});
+    }
+    [data-id="{{ section.acf_fc_layout }}-{{ loop.index0 }}"] .swiper-pagination-progressbar {
+        background-color: rgb({% for color in section.pagination_bar_color|slice(0,3) %}{{ color }},{% endfor %}0.25);
+    }
+</style>
+
+<div
+    class='
+        relative
+        pt-16
+        pb-24
+        lg:pt-24
+        lg:pb-8
+        z-[5]
+    '
+    data-section='quotes'
+    style='color: {{ section.text_color }}; background-color: {{ section.background_color }}
+    '
+>
+
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full'>
+        <svg class='w-full' viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M719 24.7418C912.5 61.8206 1233 107.519 1440 8.14117V92H0V47.0174C173.5 -12.9909 538 -9.94165 719 24.7418Z" fill="#F1EDA3"/>
+        </svg>
+    </div>
+
+    {% if section.lifestyle_image %}
+        <div
+            class='
+                absolute
+                top-1/2
+                transform
+                -translate-y-1/2
+                -left-150px
+                hidden
+                lg:block
+                w-[441px]
+                h-[565px]
+            '
+        >
+            {% include 'snippets/image.twig' with { 'image': section.lifestyle_image, 'class': 'object-center object-cover block w-full h-full' } %}
+        </div>
+    {% endif %}
+
+    {% if section.lifestyle_image_secondary %}
+        <div
+            class='
+                absolute
+                right-[-192px]
+                bottom-[-280px]
+                hidden
+                lg:block
+                w-[441px]
+                h-[565px]
+            '
+        >
+            {% include 'snippets/image.twig' with { 'image': section.lifestyle_image_secondary, 'class': 'object-center object-cover block w-full h-full' } %}
+        </div>
+    {% endif %}
+
+    <div class='relative z-10 overflow-hidden'>
+        <div class='container mx-auto px-4'>
+
+            <carousel-component data-id='{{ section.acf_fc_layout }}-{{ loop.index0 }}'>
+
+                <div class='flex justify-center lg:justify-between w-full mb-20 '>
+                    <div class='lg:w-3/4'>
+                        <h2 class='h2 uppercase lg:text-left text-center'>{{ section.heading }}</h2>
+                    </div>
+
+                    <div class='lg:flex gap-3 hidden lg:items-end lg:w-1/4 justify-end'>
+                        <div>
+                            <button class='w-16 js-previous' aria-label='Navigate to previous card'>
+                                {% include 'icons/icon-cta-arrow-left.twig' with { 'color': section.text_color, 'bg': section.background_color } %}
+                            </button>
+                        </div>
+                        <div>
+                            <button class='w-16 js-next' aria-label='Navigate to next card'>
+                                {% include 'icons/icon-cta-arrow-right.twig' with { 'color': section.text_color, 'bg': section.background_color } %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <!-- Slider main container -->
+                    <div class="swiper pb-20">
+
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+
+                            {% for quote in section.quotes %}
+                                <div class="swiper-slide">
+
+                                    {% if loop.index0 % 2 == 0 %}
+                                        <div class='lg:pt-32 lg:block flex justify-center'>
+                                            {% include 'snippets/review.twig' with { 'thumbnail_pos': 'top-[-20%] right-0', 'review': quote, 'width': 'w-full', 'class': 'xs-only:text-xs' } %}
+                                        </div>
+                                    {% elseif loop.index0 % 2 == 1 %}
+                                        <div class='lg:block flex justify-center'>
+                                            {% include 'snippets/review.twig' with { 'thumbnail_pos': 'bottom-[-20%] left-0', 'review': quote, 'width': 'w-full', 'class': 'xs-only:text-xs' } %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="swiper-pagination lg:hidden"></div>
+                    </div>
+                </div>
+
+            </carousel-component>
+
+        </div>
+    </div>
+
+</div>

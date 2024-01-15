@@ -1,0 +1,42 @@
+<div class='lg:min-h-screen flex flex-wrap items-center relative' data-section='hero' style='background-color: {{ section.section_bg_color }}; color: {{ section.section_text_color }};'>
+
+    <div class='container mx-auto px-4 lg:text-left text-center pb-0 pt-8 lg:py-32 block relative z-10 lg:z-0'>
+        <div class='lg:w-1/2 w-full lg:pr-20'>
+            <h1 class='h1 uppercase mb-4 lg:mb-10'>{{ section.heading }}</h1>
+            <div class='h6 uppercase mb-8 lg:mb-10'>
+                <p>{{ section.description }}</p>
+            </div>
+            <div>
+                {% include 'snippets/button.twig' with { 'bg_color': section.cta_bg_color, 'text_color': section.cta_text_color, 'link': section.cta, 'class': 'hero-button', 'bg_color_class' : 'hero-button' } %}
+            </div>
+        </div>
+    </div>
+
+    <div class='w-full lg:w-5/12 lg:absolute lg:top-0 lg:right-0 lg:bottom-0 lg:mt-0 -mt-8 overflow-hidden'>
+        <div class='pt-125p lg:pt-0 relative h-0 lg:h-full'>
+            {% include 'snippets/image.twig' with { 'image': section.image, 'size': '1536x1536', 'fill': 'image-fill' } %}
+        </div>
+
+        <div class='absolute bottom-250px -right-10px w-64 z-10 hidden lg:block'>
+            {% include 'snippets/image.twig' with { 'image': section.line_art_overlay, 'size': '1536x1536' } %}
+        </div>
+    </div>
+
+    {% if section.popup_active %}
+        {% include 'snippets/popup.twig' %}
+    {% endif %}
+
+</div>
+
+<div class='relative block z-20'>
+    <div class='absolute -bottom-120px lg:-bottom-148px left-1/2 transform -translate-x-1/2 z-10 lg:w-auto w-full'>
+
+        <div class='relative z-10 flex justify-center'>
+            {% include 'snippets/image.twig' with { 'image': section.product_image, 'size': '1536x1536' } %}
+        </div>
+
+        <div class='absolute inset-0 w-full h-full flex justify-center'>
+            {% include 'snippets/image.twig' with { 'image': section.line_art_background, 'size': '1536x1536' } %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<article
+  style="
+    background-color: {{ section.background_color }}
+  "
+>
+  <div
+    class="
+      relative
+      flex
+      flex-col
+      items-center
+      mx-auto
+      w-full
+      max-w-[880px]
+    "
+  >
+
+    <h4
+      class="
+        h4
+        text-center
+      "
+      style="
+        color: {{ section.text_color }};
+      "
+    >
+      {{ section.heading }}
+    </h1>
+
+    <div
+      class="
+        article
+        w-full
+        mb-12
+      "
+      style="
+        color: {{ section.text_color }};
+      "
+    >
+      {{ section.text_content }}
+    </div>
+  </div>
+</article>

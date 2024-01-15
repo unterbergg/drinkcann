@@ -1,0 +1,73 @@
+<div class='container w-full h-full mx-auto px-6'>
+	<div class='w-full h-full flex eyebrow1 uppercase items-center'>
+		<div class='gap-8 hidden lg:flex primary-menu w-5/12' style='color: {{ post.primary_menu_text_color }}'>
+
+			{% for menu_item in options.primary_menu_items %}
+
+				{% if menu_item.has_megamenu %}
+
+					<megamenu-component class='flex menu-item'>
+						<a href='{{ menu_item.main_link.url }}' class='flex gap-2 items-center js-megamenu-toggle'>
+							<span>{{ menu_item.main_link.title }}</span>
+							<span class='triangle transition duration-300'>
+								{% include 'icons/icon-triangle-down.twig' with { 'color': post.primary_menu_text_color } %}
+							</span>
+						</a>
+
+						{% include 'snippets/megamenu.twig' %}
+					</megamenu-component>
+
+				{% else %}
+
+					<div class='flex items-center'>
+						<a href='{{ menu_item.main_link.url }}'>{{ menu_item.main_link.title }}</a>
+					</div>
+
+				{% endif %}
+
+			{% endfor %}
+
+
+		</div>
+
+		<div class='lg:hidden block w-1/3'>
+			<mobile-menu-component>
+				<button class='w-8 mm-open js-mm--open' aria-label='Open mobile menu'>
+					{% include 'icons/icon-hamburger.twig' with { 'color': post.primary_menu_text_color } %}
+				</button>
+
+				<button class='w-5 mm-close js-mm--close' aria-label='Close mobile menu'>
+					{% include 'icons/icon-mm-close.twig' with { 'color': post.primary_menu_text_color } %}
+				</button>
+			</mobile-menu-component>
+		</div>
+
+		<div class='lg:w-2/12 w-1/3 flex justify-center'>
+			<a href='{{ site.url }}' class='logo block'>
+				{% include 'snippets/logo.twig' with { 'color': post.primary_menu_text_color } %}
+			</a>
+		</div>
+
+		<div class='gap-8 justify-end lg:flex hidden secondary-menu w-5/12'>
+
+			{% for menu_item in options.secondary_menu_items %}
+				<div class='flex items-center'>
+					<a href='{{ menu_item.secondary_link.url }}'>{{ menu_item.secondary_link.title }}</a>
+				</div>
+			{% endfor %}
+
+			<div data-js-grassdoor-cart-trigger class='flex items-center'>
+				<a href='#'>Cart (<span class='js-count' data-js-count>0</span>)</a>
+			</div>
+		</div>
+
+		<div data-js-grassdoor-cart-trigger class='lg:hidden flex justify-end items-center w-1/3'>
+			<button class='w-8 h-8 rounded-lg border flex items-center justify-center text-12px tracking-widest font-medium cart-icon'>
+				<span class='js-count'  data-js-count>0</span>
+			</button>
+		</div>
+
+
+	</div>
+</div>
+<div id="grassdoor-cart-container"></div>

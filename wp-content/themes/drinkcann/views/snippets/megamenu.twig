@@ -1,0 +1,67 @@
+{% if fn('is_home') or fn('is_category') %}
+
+<style>
+    .megamenu {
+        background-color: {{ options.blog_megamenu_bg_color_mobile }};
+        border-color: {{ options.blog_primary_menu_text_color }};
+    }
+
+    @media (min-width: 1024px) {
+        .megamenu {
+            background-color: {{ options.blog_megamenu_bg_color_desktop }};
+        }
+    }
+</style>
+
+{% else %}
+
+<style>
+    .megamenu {
+        background-color: {{ post.megamenu_bg_color_mobile }};
+        border-color: {{ post.primary_menu_text_color }};
+    }
+
+    @media (min-width: 1024px) {
+        .megamenu {
+            background-color: {{ post.megamenu_bg_color_desktop }};
+        }
+    }
+</style>
+
+{% endif %}
+<div class='megamenu top-100 w-full absolute left-0 right-0 border-t border-opacity-25 z-20 js-megamenu'>
+    <div class='container mx-auto px-6'>
+        <div class='grid grid-cols-12'>
+            <div class='h4 py-12 col-span-3 relative'>
+                <span class='absolute right-0 top-0 bottom-0 w-1px h-full' style='background-color: {{ post.primary_menu_text_color }};'></span>
+
+                <ul class='grid gap-3'>
+
+                    {% for shop_item in menu_item.shop_links %}
+                        <li>
+                            <a href='{{ shop_item.shop_link.url }}' class='flex gap-2 items-center js-submegamenu-toggle'>{{ shop_item.shop_link.title }}</a>
+                        </li>
+                    {% endfor %}
+
+
+                </ul>
+            </div>
+            <div class='col-span-8 col-start-5 py-12'>
+                <div class='eyebrow1 mb-6'>
+                    {{ menu_item.favorites_title }}
+                </div>
+                <div class="overflow-wrapper lg:overflow-y-auto lg:pb-8" style="height: calc(100vh - 219px);">
+                    <div class='grid grid-cols-4 gap-6 text-center'>
+
+                        {% for favorite_item in menu_item.favorites_links %}
+                            <div>
+                                {% include 'snippets/menu-image.twig' %}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

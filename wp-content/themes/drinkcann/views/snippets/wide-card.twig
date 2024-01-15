@@ -1,0 +1,23 @@
+<div class='text-left' style='color: {{ item.text_color }}'>
+    <div class='w-full mx-auto'>
+        <div class='mb-6 lg:mb-16 relative overflow-hidden rounded-xl w-full pt-100p lg:pt-62p object-right'>
+            {% include 'snippets/image.twig' with { 'image': item.image, 'size': '1536x1536', 'fill': 'image-fill', 'class': 'object-right' } %}
+            <div class='absolute inset-0 w-full h-full z-10'>
+                <div class='w-full h-full py-12 px-8 lg:px-12 z-10 flex flex-col justify-between'>
+                    <div>
+                        <div class='mb-4 uppercase font-gotham-condensed leading-none display lg-92px'>
+                            {{ item.heading }}
+                        </div>
+                        <div class='body1 uppercase'>
+                            {{ item.description }}
+                        </div>
+                    </div>
+                    <div class=''>
+                        {% include 'snippets/button.twig' with { 'id': '', 'bg_color': item.cta_bg_color, 'text_color': item.cta_text_color, 'link': item.cta, 'class':'wide-card-button', 'bg_color_class' : 'wide-card-button' } %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

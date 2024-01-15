@@ -1,0 +1,28 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+{#    <span#}
+{#        class='#}
+{#            spacer#}
+{#            block#}
+{#            {% if post.meta('categories') %}#}
+{#                h-[62px]#}
+{#                lg:h-[194px]#}
+{#            {% else %}#}
+{#                h-[120px]#}
+{#                lg:h-[132px]#}
+{#            {% endif %}#}
+{#        '#}
+{#        style='background-color: {{ post.megamenu_bg_color_desktop }}'#}
+{#    >#}
+{#    </span>#}
+    <categories-component>
+
+		{% include 'snippets/categories-bar.twig' with { 'section': post.meta('categories'), 'shop': shop } %}
+{#		{% include 'sections/split.twig' with { 'section': post.meta('banner'), 'width_content': 'lg:w-6/12', 'width_image': 'lg:w-6/12', 'has_mobile_spacer': true } %}#}
+		{% include 'sections/product-grid.twig' with { 'section': post.meta('categories') }  %}
+
+    </categories-component>
+
+{% endblock %}

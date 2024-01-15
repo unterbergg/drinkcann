@@ -1,0 +1,24 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    {% set post = Post(post) %}
+
+	<span
+        class='
+            blog-spacer
+            block
+            h-[62px]
+            lg:h-[194px]
+            
+        '
+        style='background-color: {{ options.blog_megamenu_bg_color_desktop }}'
+    >
+    </span>
+    
+    {% include 'snippets/blog-navigation.twig' %}
+    {% include 'snippets/blog-hero.twig' %}
+    {% include 'snippets/blog-list.twig' %}
+    {% include 'snippets/sections.twig' %}
+
+{% endblock %}

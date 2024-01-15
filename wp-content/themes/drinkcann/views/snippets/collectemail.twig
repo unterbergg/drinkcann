@@ -1,0 +1,85 @@
+<style>
+    .unavailable-popup input::placeholder {
+        color: {{ options.unavailable_text_color }};
+    }
+
+    .unavailable-popup input:focus {
+        outline: none;
+    }
+</style>
+
+<div class=' w-124 lg:w-191 fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-60 collect-popup' style='color: {{ options.unavailable_text_color }}' data-js-collect-modal >
+    <svg viewBox="0 0 764 748" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M764 369.704C764 589.627 581.831 748 362.979 748C144.128 748 0 509.986 0 290.062C0 70.1391 223.494 -21.3352 418.456 4.1502C613.419 29.6356 764 136.355 764 369.704Z" fill="{{ options.unavailable_background_color }}"/>
+    </svg>
+
+    <div class='absolute inset-0 w-screen sm:w-full h-full py-16 lg:py-12 px-5 sm:px-12 lg:left-auto lg:transform-none left-1/2 transform -translate-x-1/2 lg:translate-x-0'>
+        <div class='mx-auto w-20 mb-16 lg:block hidden'>
+            {% include 'snippets/logo.twig' with { 'color': options.unavailable_text_color } %}
+        </div>
+
+        <div class='h4 uppercase mx-auto mb-3 lg:mb-3 lg:max-w-md'>
+            DROP YOUR EMAIL AND GET $10 OFF YOUR FIRST PURCHASE
+        </div>
+
+        <div class='body2 mx-auto mb-4 max-w-md'>
+           As a VIP you will also receive early access to new products and exclusive promos.
+        </div>
+
+        <data-capture-component>
+            <form>
+
+                <input type="hidden" name="g" value="{{ options.unavailable_klaviyo_id }}">
+
+                {% if options.input_type|length > 1 %}
+                    {% set text_size = 'text-[37px] lg:text-[58px]' %}
+                {% else %}
+                    {% set text_size = 'text-[75px] lg:text-[116px]' %}
+                {% endif %}
+
+                {% if 'email' in options.input_type %}                
+                    <div class='{{ text_size }} mt-2 leading-none'>
+                        <input type='email' autocomplete="email" name='email' id='grassdoor_email_popup' placeholder='{{ options.unavailable_input_placeholder }}' class='w-full text-center uppercase bg-transparent font-bold leading-none font-gotham-condensed' style='color: {{ options.unavailable_text_color }}' required />
+                    </div>
+                {% endif %}
+
+                {% if 'phone' in options.input_type %}
+                    <div class='{{ text_size }} mt-2 leading-none'>
+                        <input type='tel' autocomplete="off" name='phone_number' pattern="[0-9]{10}" class='w-full text-center uppercase bg-transparent font-bold leading-none font-gotham-condensed' style='color: {{ options.unavailable_text_color }}' placeholder='{{ options.unavailable_input_placeholder_phone }}' required />
+                    </div>
+                {% endif %}
+
+                <div class='body2 mt-2'>
+                    <input type="checkbox" id="consent-popup" name="consent" value="true" required>
+                    <label for="consent-popup">I consent to receiving marketing messages from CANN</label>
+                </div>
+
+                <div class='mt-10'>
+                    {% include 'snippets/button.twig' with { 'data_js': 'data-collect-email-submit', 'is_button': true, 'bg_color': options.unavailable_text_color, 'text_color': options.unavailable_background_color, 'link': { 'title': options.unavailable_cta_text }, 'is_button': true, 'class':'collectemail-button', 'bg_color_class' : 'collectemail-button' } %}
+                </div>
+
+                <div class='message-container flex items-center justify-center'>
+                    <div class='mt-10 h4 uppercase'>
+                        <div class='success_message'>{{ options.unavailable_success_message }}</div>
+                        <div class='error_message'>{{ options.unavailable_error_message }}</div>
+                    </div>
+                </div>
+
+            </form>
+        </data-capture-component>
+
+
+        <div class='mt-4'>
+            <div class="w-1/2 mx-auto mb-2 lg:mb-3">
+                <a href='#' class='eyebrow1 uppercase' data-js-no-thanks>NO THANKS</a>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class='absolute lg:-right-60px lg:bottom-0 -right-20px -bottom-80px lg:w-64 w-48'>
+        {% include 'snippets/image.twig' with { 'image': options.unavailable_lifestyle_image, 'size': '1536x1536' } %}
+    </div>
+</div>

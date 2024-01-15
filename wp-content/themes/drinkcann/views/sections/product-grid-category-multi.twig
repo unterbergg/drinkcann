@@ -1,0 +1,51 @@
+{% for key, category in multi %}
+    {% set term = fn('get_term', category) %}
+
+<section class='{% if loop.first %} lg:pt-96 pt-52 {% endif %}
+                {% if loop.last %} lg:pb-96 pb-52 {% else %} pb-44 {% endif %}
+                relative z-20'
+         data-section='products'
+         style='background-color: {{ fn('get_field', 'plp_bg', term)|default('#EFE4EC') }}; color: {{ primary_menu_text_color }}'>
+
+
+    <div class='container mx-auto px-4'>
+        {% set featured_section = fn('get_field', 'featured_section', term) %}
+        <div class='p-30px pl-10px w-full h-full bg-cover rounded-2xl lg:bg-left bg-center'>
+            <div class=' lg:top-100px top-30px uppercase' style='color: {{ fn('get_field', 'primary_menu_text_color', term) }}'>
+                <a href="{{ fn('get_term_link', term) }}">
+                    <h2 class='display'>
+                        {{ term.name }}
+                    </h2>
+                </a>
+                {% if term.description != "" %}
+                <div class='h6'>
+                    {{ term.description }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class='grid grid-x-gap-0 grid-y-gap-20'>
+
+            <div class='relative'>
+                <div class='grid grid-cols-2 lg:grid-cols-4 gap-x-0 gap-y-20'>
+                    {% set posts = fn('get_field', 'order_products', term) %}
+                    {% for key, product in posts %}
+
+                        {% include 'snippets/card-grid.twig' with {
+                            'section': posts,
+                            'product': product,
+                            'product_meta': product.meta('categories'),
+                            'cta': cta_text, 'cta_color': fn('get_field', 'plp_bg', term),
+                            'multi': 'true'
+                        } %}
+
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+</section>
+
+{% endfor %}

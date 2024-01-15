@@ -1,0 +1,40 @@
+<style>
+    .mm {
+        background-color: {{ post.megamenu_bg_color_mobile }};
+        color: {{ post.primary_menu_text_color }};
+    }
+</style>
+
+<div class='js-mm mm fixed z-40 h-full inset-0 lg:hidden uppercase text-center' tabindex='0'>
+
+    <div class='pb-16 h-full p1 font-medium flex flex-col mob-menu-warapper'>
+
+        <nav class='w-full flex-auto overflow-y-scroll hide-scrollbar' style='color: {{ post.primary_menu_text_color }};'>
+            <ul
+                class='
+                    h3
+                    relative
+                    z-[5]
+                '
+            >
+                <span class='block absolute top-px left-0 right-0 w-full opacity-25' style='height: 1px; background-color: {{ post.primary_menu_text_color }};'></span>
+
+                {% for mm_item in options.mobile_menu_items %}
+                    <li class='px-6 py-4 relative'>
+                        <a href='{{ mm_item.mobile_menu_link.url }}' class='js-mm-toggle'>{{ mm_item.mobile_menu_link.title }}</a>
+
+                        <span class='block absolute bottom-0 left-0 right-0 w-full opacity-25' style='height: 1px; background-color: {{ post.primary_menu_text_color }};'></span>
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </nav>
+
+
+    </div>
+
+    <div class='absolute bottom-0 left-0 right-0'>
+        {% include 'snippets/image.twig' with { 'image': options.mobile_menu_image, 'size': '1536x1536' } %}
+    </div>
+
+</div>

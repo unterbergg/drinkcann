@@ -1,0 +1,64 @@
+<div class='pt-16 lg:pt-40 lg:pb-48 relative' data-section='split' style='background-color: {{ section.background_color }}; color: {{ section.text_color }};'>
+
+    <div class='absolute -left-40px top-1/2 lg:w-28'>
+        {% include 'snippets/circle.twig' with { 'color': section.text_color } %}
+    </div>
+
+    <div class='container mx-auto px-4 relative z-20'>
+        <div class='{{ width_content|default('lg:w-7/12') }} w-full lg:text-left text-center relative'>
+
+            <div class='absolute right-30px bottom-0 w-12 lg:w-16'>
+                {% include 'snippets/circle.twig' with { 'color': section.text_color } %}
+            </div>
+
+            <div class='absolute right-80px bottom-80px w-6'>
+                {% include 'snippets/circle.twig' with { 'color': section.text_color } %}
+            </div>
+
+
+            {% if has_mobile_spacer %}
+                <span class='spacer block lg:hidden h-20'></span>
+            {% endif %}
+
+            <div
+                class='
+                    uppercase
+                    pb-[38px]
+                    lg:pb-16
+                  '
+            >
+                  <h3 class='h1 mb-6 lg:mb-10'>{{ section.heading }}</h3>
+                <div
+                    class='
+                        h6
+                        mx-auto
+                        lg:ml-0
+                        w-full
+                        max-w-[260px]
+                        lg:max-w-[288px]
+                    '
+                >
+                    <p>{{ section.description }}</p>
+                </div>
+                {% if section.cta %}
+                    <div
+                      class='
+                        relative
+                        bottom-[-68px]
+                        lg:bottom-0
+                        lg:mt-[64px]
+                        h-[62px]
+                      '
+                    >
+                        {% include 'snippets/button.twig' with { 'bg_color': section.text_color, 'text_color': section.cta_text_color, 'link': section.cta, 'bg_color_class' : 'split-button', 'class' : 'split-button'} %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class='{{ width_image|default('lg:w-5/12') }} lg:absolute lg:right-0 lg:top-0 lg:bottom-0 w-full pt-100p lg:pt-0 relative'>
+        {% include 'snippets/image.twig' with { 'image': section.lifestyle_image, 'size': '2048x2048', 'fill': 'image-fill' } %}
+    </div>
+
+</div>

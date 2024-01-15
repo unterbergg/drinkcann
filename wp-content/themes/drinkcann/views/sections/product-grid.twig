@@ -1,0 +1,39 @@
+<section class='py-52 lg:py-96 relative z-20' data-section='products' style='background-color: {{ section.background_color }}; color: {{ section.text_color }}'>
+
+    <div class='container mx-auto px-4'>
+
+        <div class='grid gap-48'>
+
+            {% for block in section.categories %}
+                <div class='relative js-category' data-id='{{ block.title|sanitize }}'>
+                    <span class='-top-150px absolute' id='{{ block.title|sanitize }}'></span>
+
+                    <div class='grid lg:grid-cols-3 gap-16'>
+                        <div class='lg:col-span-2 relative roun'>
+
+                            <div class='lg:pt-0 pt-100p w-full'>
+                                {% include 'snippets/image.twig' with { 'image': block.image, 'size': '1536x1536', 'fill': 'image-fill rounded-xl' } %}
+                            </div>
+
+                            <div class='absolute left-50px top-50px uppercase' style='color: {{ block.text_color }}'>
+                                <div class='mb-6'>
+                                    <h2 class='display'>{{ block.title }}</h2>
+                                </div>
+                                <div class='h6'>
+                                    {{ block.description }}
+                                </div>
+                            </div>
+                        </div>
+
+                        {% for product in block.products %}
+                            {% include 'snippets/card.twig' with { 'section': section, 'product': product.product, 'cta': product.cta_text, 'cta_color': product.cta_color } %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>

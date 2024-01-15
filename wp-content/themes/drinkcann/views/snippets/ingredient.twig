@@ -1,0 +1,11 @@
+<div>
+    <div>
+        <h3 class='h3 uppercase mb-4 relative inline-block'>
+        {% include 'snippets/image.twig' with { 'image': block.line_art_image, 'size': '1536x1536', 'class': 'absolute bottom-0 left-0 transform -translate-x-1/2' } %}
+            <span class='relative z-10'>{{ block.heading }}</span>
+        </h3>
+    </div>
+    <div>
+        {{ block.description }}
+    </div>
+</div>

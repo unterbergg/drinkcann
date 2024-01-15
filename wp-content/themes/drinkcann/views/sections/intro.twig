@@ -1,0 +1,52 @@
+<div class='relative flex flex-col' data-section='intro' style='background-color: {{ section.background_color }}'>
+
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full w-full'>
+        <svg class='w-full' viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M721 28.3988C527.5 70.958 207 123.411 0 9.34447V92H1440V53.9669C1266.5 -14.911 902 -11.4111 721 28.3988Z" fill="{{ section.background_color }}"/>
+        </svg>
+    </div>
+
+    <div class='overflow-hidden block flex-auto relative'>
+
+        <div class='container mx-auto px-4 pt-80 lg:pt-40 pb-8'>
+          <h2
+            class='
+              w-full
+              lg:w-2/3
+              mx-auto
+              max-w-[838px]
+              text-center
+              h2
+              text-purple
+              uppercase
+            '
+          >
+            {{ section.heading }}
+          </h2>
+        </div>
+
+        <div class='absolute inset-0 w-full h-full z-10 mx-auto max-w-screen-2xl'>
+            <div class='absolute -right-10px top-80px lg:top-auto design:top-[350px] lg:bottom-90px design:bottom-auto lg:-left-20px z-10'>
+                {% include 'snippets/review.twig' with { 'thumbnail_pos': 'top-[-20%] lg:-top-50px right-0', 'review': section.quotes[0], 'width': 'w-48 lg:w-87_5', 'class': 'eyebrow2 lg:h6' } %}
+            </div>
+
+            <div class='absolute -left-10px top-10px lg:left-auto lg:top-auto lg:bottom-90px lg:-right-20px z-10'>
+                {% include 'snippets/review.twig' with { 'thumbnail_pos': 'bottom-[-20%] lg:-bottom-50px left-0', 'review': section.quotes[1], 'width': 'w-48 lg:w-87_5', 'class': 'eyebrow2 lg:h6' } %}
+            </div>
+        </div>
+
+        <div class='relative'>
+            <div class='relative lg:w-225 w-142 left-1/2 transform -translate-x-1/2'>
+                <div class='relative z-10'>
+                    {% include 'snippets/image.twig' with { 'image': section.image, 'size': '1536x1536' } %}
+                </div>
+
+                <div class='absolute inset-0 w-full h-full'>
+                    {% include 'snippets/image.twig' with { 'image': section.line_art_background, 'size': '1536x1536' } %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

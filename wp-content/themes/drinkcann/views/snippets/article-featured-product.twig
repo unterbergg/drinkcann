@@ -1,0 +1,140 @@
+{% set post = post.meta('featured_product') %}
+
+{% if post.is_visible %}
+  <section
+    class="
+      lg:flex
+      lg:items-stretch
+      w-full
+      lg:min-h-[860px]
+      lg:max-h-[860px]
+      overflow-hidden
+    "
+    style="
+      background-color: {{ post.color_secondary }};
+    "
+    data-id="{{ post.variant.grassdoor_product_id }}"
+    data-is-bundle="{{ post.variant.grassdoor_product_is_bundle }}"
+    data-js-grassdoor-product
+  >
+    <div
+      class="
+        featured-product__side 
+        relative
+      "
+    >
+
+      {% set image = post.image %} 
+      
+      {% if image %}
+        {% include 'snippets/image.twig' with { 'image': post.image, 'fill': 'image-fill' } %}
+      {% endif %}
+
+      {% set image_product = post.product_image %}
+      {% if image_product %}
+
+        {% include 'snippets/image.twig' with 
+            {
+                'image': image_product,
+                'class': 'featured-product__image-product
+                            absolute
+                            lg:top-[50%]
+                            lg:right-0
+                            bottom-0
+                            lg:bottom-auto
+                            left-[50%]
+                            lg:left-auto
+                            object-center
+                            object-cover
+                            block
+                            mt-[-20px]
+                            w-[375px]
+                            lg:w-[512px]
+                            h-[455px]
+                            lg:h-[632px]
+                            pointer-events-none'
+            }
+        %}
+        
+      {% endif %}
+    </div>
+    <div
+      class="
+        featured-product__main
+        flex
+        flex-col
+        justify-center
+        items-center
+        mx-auto
+        w-full
+        max-w-[850px]
+        pt-[140px]
+        lg:pt-[24px]
+        pr-[24px]
+        pb-[64px]
+        lg:pb-[38px]
+        pl-[24px]
+        lg:pl-[120px]
+      "
+    >
+      <div
+        class="
+          flex
+          flex-col
+          items-center
+          lg:items-start
+          w-full
+          max-w-[448px]
+        "
+      >
+        {% if post.kicker != blank %}
+          <div
+            class="
+              h6
+              mb-[16px]
+              lg:mb-[20px]
+              text-center
+              lg:text-left
+            "
+            style="
+              color: {{ post.color_primary }};
+            "
+          >
+            {{ post.kicker }}
+          </div>
+        {% endif %}
+        <h2
+          class="
+            h2
+            uppercase
+            text-center
+            lg:text-left
+          "
+          style="
+            color: {{ post.color_primary }};
+          "
+        >
+          {{ post.variant.title }}
+        </h2>
+        <p
+          class="
+            h6
+            mt-[8px]
+            lg:mt-[20px]
+            text-center
+            lg:text-left
+          "
+          style="
+            color: {{ post.color_primary }};
+          "
+        >
+          {%- if post.description != blank -%}
+            {{- post.description -}}&nbsp;•&nbsp;
+          {%- endif -%}
+          {{- variant.price -}}
+        </p>
+        {% include 'snippets/button.twig' with { class: 'is-loading mt-[26px] lg:mt-[72px] article-featured-product-button', 'bg_color_class' : 'article-featured-product-button', 'is_button': true, 'text_wrapper_js': 'data-js-grassdoor-product-cta-text', 'data_js':'data-js-grassdoor-product-cta','id': product.grassdoor_product_id, 'is_bundle': product.grassdoor_product_is_bundle, 'bg_color': post.color_tertiary, 'text_color': post.color_secondary, 'link': { 'title': cta, 'url': '' } } %}
+      </div>
+    </div>
+  </section>
+{% endif %}

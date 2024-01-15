@@ -1,0 +1,74 @@
+
+{% set firstpost = post.meta('sections')|first  %}
+{% if firstpost.acf_fc_layout == 'simple_content' %}
+    <div class='pt-12 pb-24 lg:pt-32 lg:pb-[200px] relative' data-section='highlights'
+         style='color: {{ firstpost.text_color }}; background-color: {{ firstpost.background_color }}'
+        data-id='{{ firstpost.acf_fc_layout }}-before-firstpost'>
+    <h2
+      class="
+        h2
+        text-center
+		uppercase
+        mb-12
+      "
+    >
+      {{ post.title }}
+    </h1>
+{% endif %}
+
+{% for section in post.meta('sections') %}
+
+    {% if section.acf_fc_layout == 'hero' %}
+        {% include 'sections/hero.twig' %}
+    {% elseif section.acf_fc_layout == 'hero_alternate' %}
+        {% include 'sections/hero-alternate.twig' %}
+    {% elseif section.acf_fc_layout == 'intro' %}
+        {% include 'sections/intro.twig' %}
+    {% elseif section.acf_fc_layout == 'find_a_cann' %}
+        {% include 'sections/find-a-cann.twig' %}
+    {% elseif section.acf_fc_layout == 'find_a_cann_trial' %}
+        {% include 'sections/find-a-cann-trial.twig' %}
+    {% elseif section.acf_fc_layout == 'product_carousel' %}
+        {% include 'sections/product-carousel.twig' %}
+    {% elseif section.acf_fc_layout == 'highlights' %}
+        {% include 'sections/highlights.twig' %}
+    {% elseif section.acf_fc_layout == 'highlights_alternate' %}
+        {% include 'sections/highlights-alternate.twig' %}
+    {% elseif section.acf_fc_layout == 'quotes' %}
+        {% include 'sections/quotes.twig' %}
+    {% elseif section.acf_fc_layout == 'split' %}
+        {% include 'sections/split.twig' %}
+    {% elseif section.acf_fc_layout == 'ingredients' %}
+        {% include 'sections/ingredients.twig' %}
+    {% elseif section.acf_fc_layout == 'reviews' %}
+        {% include 'sections/reviews.twig' %}
+    {% elseif section.acf_fc_layout == 'faqs' %}
+        {% include 'sections/faqs.twig' %}
+    {% elseif section.acf_fc_layout == 'options' %}
+        {% include 'sections/options.twig' %}
+    {% elseif section.acf_fc_layout == 'collections_grid' %}
+        {% include 'sections/collections-grid.twig' %}
+    {% elseif section.acf_fc_layout == 'cta' %}
+        {% include 'sections/cta.twig' %}
+    {% elseif section.acf_fc_layout == 'email_capture' %}
+        {% include 'sections/email-capture.twig' %}
+    {% elseif section.acf_fc_layout == 'simple_content' %}
+        {% include 'sections/simple-content.twig' %}
+    {% elseif section.acf_fc_layout == 'login' %}
+        {% include 'sections/login.twig' %}
+    {% elseif section.acf_fc_layout == 'sign_up' %}
+        {% include 'sections/sign-up.twig' %}
+    {% elseif section.acf_fc_layout == 'learn_page_banner' %}
+        {% include 'sections/lp-banner.twig' %}
+    {% elseif section.acf_fc_layout == 'learn_page_hero' %}
+        {% include 'sections/lp-hero.twig' %}
+    {% elseif section.acf_fc_layout == 'lp_ingredients' %}
+        {% include 'sections/lp-ingredients.twig' %}
+    {% elseif section.acf_fc_layout == 'lp_categories' %}
+        {% include 'sections/lp-categories.twig' %}
+    {% endif %}
+{% endfor %}
+
+{% if firstpost.acf_fc_layout == 'simple_content' %}
+    </div>
+{% endif %}

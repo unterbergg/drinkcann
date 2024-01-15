@@ -1,0 +1,158 @@
+<div class='pt-12 pb-24 lg:pt-32 lg:pb-[200px] relative' data-section='highlights'
+     style='color: {{ section.text_color }}; background-color: {{ section.background_color }}'
+     data-id='{{ section.acf_fc_layout }}-{{ loop.index0 }}'>
+
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full'>
+        <svg class='w-full' viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M719 24.7418C912.5 61.8206 1233 107.519 1440 8.14117V92H0V47.0174C173.5 -12.9909 538 -9.94165 719 24.7418Z"
+                  fill="#5e609d"/>
+        </svg>
+    </div>
+
+    <div class='overflow-hidden absolute inset-0 w-full h-full'>
+
+        <div class='absolute right-100px top-60px w-16 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute -left-50px top-100px w-48 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute left-100px top-350px w-8 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute lg:-left-25px bottom-200px w-16 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute lg:-right-100px bottom-300px w-40 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+    </div>
+
+    <div class='relative z-20 md:pt-24'>
+
+        <div class='container mx-auto px-4'>
+
+            <div class='w-full lg:w-3/4 mx-auto text-center  lg:mb-6 mb-6 has-underline max-w-[700px]'>
+
+                <form name='loginform' id='loginform' action='/wp-login.php' method='post'>
+                
+                    <div class='justify-center mb-6'>
+                        <div class='login'>
+                        LOGIN
+                        </div>
+                    </div>
+
+                    <div class='justify-center mb-6'>
+                        <div class='login-mark'>
+                        LOG INTO YOUR ACCOUNT TO MANAGE YOUR MEMBERSHIP. MAKE CHANGES, SKIP A SHIPMENT OR CANCEL AT ANY TIME.
+                        </div>
+                    </div>
+
+                    {% if request.get.login == 'failed' %}  
+                        <p class='justify-center mb-6' style='color:#FF0000'><strong>ERROR:</strong> Invalid username and/or password.</p>
+                    {% elseif request.get.login == 'empty' %}
+                        <p class='justify-center mb-6' style='color:#FF0000'><strong>ERROR:</strong> Username and/or Password is empty.</p>
+                    {% elseif request.get.login == 'false' %} 
+                        <p class='justify-center mb-6' style='color:#FF0000'><strong>ERROR:</strong> You are logged out.</p>
+                    {% endif %}
+
+                    <div class='login-box mb-6 mx-12'>
+				        <input type="email" name='log' id='user_login' placeholder='Enter Email' class='login-input w-full bg-transparent' value='' size='20' required>
+                    </div>
+
+                    <div class="login-box mb-6 mx-12">
+				            <input type='password' name='pwd' id='user_pass' placeholder='Enter Password' class='login-input w-full bg-transparent' value='' size='20' required>
+                    </div>
+
+                    <div class='input-container flex items-center border-purple justify-center mb-6'>
+				            <div class='login-mark'><input name='rememberme' type='checkbox' id='rememberme' value='forever'> <div class='pl-2'>REMEMBER ME</div> </div>
+                    </div>
+                
+                    <div class='input-container flex items-center border-purple mb-6 justify-center'>
+		                <input type='hidden' name='redirect_to' value='/'>
+                        {% include 'snippets/button.twig' with { 'is_button': true, 'bg_color': section.text_color, 'text_color': '#F6F2F6', 'data_attribute': "name='wp-submit' id='wp-submit' value='Log In'", 'link': { 'title': 'LOGIN' }, 'class': 'login-button', 'bg_color_class' : 'login-button' } %}
+                    </div>
+
+                    <div class='mb-6'>
+                        <div class='login-mark justify-center'>
+                            <a class='text-decoration-line: underline' href='/forgot/'>FORGOT PASSWORD</a>
+                        </div>
+                    </div>
+
+                    <div class='mb-6'>
+                        <div class='login-mark justify-center'>
+                            DON’T HAVE AN ACCOUNT? 
+                            <a class='text-decoration-line: underline pl-2' href='/sign-up/'>SIGN UP</a>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+/* LOGIN */
+.login {
+    /* Desktop/H3 */
+    font-family: GothamCondensed;
+    font-style: normal;
+    font-weight: 350;
+    font-size: 56px;
+    line-height: 56px;
+    /* identical to box height, or 100% */
+    text-transform: uppercase;
+
+    /* Purple */
+    color: {{ section.text_color }};
+}
+
+.login-mark {
+    font-family: Gotham;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 29px;
+
+    /* or 204% */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.12em;
+
+    /* Purple */
+    color: {{ section.text_color }};
+}
+
+.login-box {
+    box-sizing: border-box;
+
+    border: 2px solid #686BAE;
+    border-radius: 100px;
+}
+
+.login-input {
+    font-family: GothamCondensed;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 112px;
+    /* identical to box height, or 175% */
+    text-align: center;
+    text-transform: uppercase;
+
+    /* PURPLE */
+    color: {{ section.text_color }};
+}
+
+</style>

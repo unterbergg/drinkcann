@@ -1,0 +1,43 @@
+{
+    "key": "group_61fd6a98b05ec",
+    "title": "Klaviyo",
+    "fields": [
+        {
+            "key": "field_61fd6a9f949ad",
+            "label": "Klaviyo Site ID",
+            "name": "klaviyo_site_id",
+            "type": "text",
+            "instructions": "In your Klaviyo account, go to Account > Settings > API Keys and locate your Public API Key. It is an alphanumeric, 6-character code.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "abc123",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1643998229
+}

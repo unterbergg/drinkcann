@@ -1,0 +1,245 @@
+<style>
+    .footer__newsletter-form input::placeholder {
+        color: {{ options.footer_text_color }};
+    }
+
+    .footer__newsletter-form input:focus {
+        outline: none;
+    }
+</style>
+
+<div class='relative z-40' style='background-color: {{ options.footer_background_color }}'>
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full w-full'>
+        <svg class='w-full' viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M723.5 0C373.5 0 245.5 104.647 0 19.367L1.52588e-05 92H1440V43.0853C1171 65.7242 1073.5 0 723.5 0Z" fill="{{ options.footer_background_color }}"/>
+        </svg>
+    </div>
+
+    {% if options.image_first %}
+        <div
+          class='
+            absolute
+            -top-70px
+            lg:-top-[84px]
+            -left-40px
+            lg:left-[195px]
+            rotate-20
+            transform
+            w-[120px]
+            md:w-[195px]
+            h-[229px]
+            md:h-[378px]
+          '
+        >
+            {% include 'snippets/image.twig' with { 'image': options.image_first, class: 'filter-shadow object-center object-cover block w-full h-full' } %}
+        </div>
+    {% endif %}
+
+    <div class='absolute inset-0 w-full h-full overflow-hidden'>
+
+        <div class='absolute -left-10px top-1/2 lg:top-480px w-10'>
+            {% include 'snippets/circle.twig' with { 'color': options.footer_text_color } %}
+        </div>
+
+        <div class='absolute lg:left-70px -left-10px lg:top-300px top-200px w-10'>
+            {% include 'snippets/circle.twig' with { 'color': options.footer_text_color } %}
+        </div>
+
+        {#<div class='absolute left-300px bottom-400px w-10 lg:block hidden'>
+            {% include 'snippets/circle.twig' with { 'color': options.footer_text_color } %}
+        </div>#}
+
+        {#<div class='absolute right-70px bottom-400px w-10 lg:block hidden'>
+            {% include 'snippets/circle.twig' with { 'color': options.footer_text_color } %}
+        </div>#}
+
+        <div
+          class='
+            absolute
+            right-40px
+            lg:right-[-35px]
+            top-1/2
+            lg:top-[465px]
+            w-20
+            lg:w-32
+            transform
+            -translate-y-8
+            lg:translate-y-0
+          '
+        >
+            {% include 'snippets/circle.twig' with { 'color': options.footer_text_color } %}
+        </div>
+
+        {#<div class='absolute lg:right-300px -right-10px lg:top-100px top-10px lg:w-10 w-12'>
+            {% include 'snippets/circle.twig' with { 'color': options.footer_text_color } %}
+        </div>#}
+
+        {% if options.image_second %}
+            <div
+              class='
+                absolute
+                top-[630px]
+                lg:top-[148px]
+                -right-65px
+                -rotate-15
+                transform
+                w-[120px]
+                md:w-[195px]
+                h-[229px]
+                md:h-[378px]
+              '
+            >
+                {% include 'snippets/image.twig' with { 'image': options.image_second, class: 'filter-shadow object-center object-cover block w-full h-full' } %}
+            </div>
+        {% endif %}
+
+
+        {#{% if options.image_second %}
+            <div
+              class='
+                absolute
+                top-[542px]
+                -left-45px
+                -rotate-20
+                transform
+                lg:block
+                hidden
+                w-[195px]
+                h-[378px]
+              '
+            >
+                {% include 'snippets/image.twig' with { 'image': options.image_third, class: 'filter-shadow object-center object-cover block w-full h-full' } %}
+            </div>
+        {% endif %}#}
+
+    </div>
+
+    <div class='relative container mx-auto px-6'>
+        <div class='text-center h2 mb-12 lg:mb-8 uppercase' style='color: {{ options.footer_text_color }}'>
+            {{ options.footer_heading }}
+        </div>
+        <div class='flex flex-col items-center justify-center flex-wrap lg:mb-24 mb-8'>
+
+            {% for contact_cta in options.contact_ctas %}
+                <div class='flex lg:block justify-center lg:px-4 py-3 lg:w-auto w-full'>
+                    {% include 'snippets/button.twig' with {
+                        'bg_color': options.footer_text_color,
+                        'text_color': options.footer_background_color,
+                        'link': contact_cta.contact_cta,
+                        'class': 'w-full max-w-[325px] footer_button',
+                        'bg_color_class' : 'footer_button'
+                    } %}
+                </div>
+            {% endfor %}
+
+        </div>
+
+        <div class='lg:w-142 mx-auto text-center body2 lg:body1' style='color: {{ options.footer_text_color }}'>
+            {{ options.contact_description }}
+        </div>
+
+
+    </div>
+
+
+    <div
+      class='
+        relative
+        pt-[78px]
+        lg:pt-[124px]
+        pb-[76px]
+        lg:pb-[118px]
+        z-10
+      '
+    >
+        <div class='container mx-auto px-6'>
+            <div class='flex flex-wrap justify-between lg:gap-0 gap-20'>
+                <div class='w-full lg:w-1/2 text-teal '>
+                    <div class='mb-4 lg:mb-6 font-gotham-condensed text-48px uppercase font-medium lg:font-bold leading-none' style='color: {{ options.footer_text_color }}'>
+                        {{ options.newsletter_heading }}
+                    </div>
+                    <div class='mb-12' style='color: {{ options.footer_text_color }}'>
+                        {{ options.newsletter_description }}
+                    </div>
+                    <div class='text-28px font-gotham-condensed uppercase leading-none'>
+
+                        <newsletter-form-component>
+                            <form class='footer__newsletter-form relative py-3'  data-js-newsletter-form>
+                                <div class='input-container flex items-center border-b border-teal'>
+                                    <input type="hidden" name="g" value="{{ options.newsletter_klaviyo_id }}">
+                                    <input type='email' autocomplete="email" name='email' id='k_id_email' placeholder='{{ options.newsletter_form_placeholder }}' class='flex-auto uppercase bg-transparent text-teal' required data-js-newsletter-form-input />
+                                    <button type='submit' data-js-newsletter-form-submit>
+                                        <svg width="26" height="16" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.25" d="M1 7C0.447715 7 0 7.44772 0 8C0 8.55228 0.447715 9 1 9L1 7ZM25.7071 8.70711C26.0976 8.31658 26.0976 7.68342 25.7071 7.29289L19.3431 0.928932C18.9526 0.538408 18.3195 0.538408 17.9289 0.928932C17.5384 1.31946 17.5384 1.95262 17.9289 2.34315L23.5858 8L17.9289 13.6569C17.5384 14.0474 17.5384 14.6805 17.9289 15.0711C18.3195 15.4616 18.9526 15.4616 19.3431 15.0711L25.7071 8.70711ZM1 9L25 9V7L1 7L1 9Z" fill="#09A0BE"/>
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div class='message-container flex items-center justify-center'>
+                                    <div class='success_message'>{{ options.newsletter_form_success }}</div>
+                                    <div class='error_message body2 text-red'>{{ options.newsletter_form_error }}</div>
+                                </div>
+                            </form>
+                        </newsletter-form-component>
+                    </div>
+                </div>
+                <div class='w-full lg:w-5/12 text-teal uppercase'>
+                    <div class='grid grid-cols-2 gap-12 eyebrow1' style='color: {{ options.footer_text_color }}'>
+                        <div>
+                            <ul class='grid gap-8 leading-normal'>
+
+                                {% for footer_link in options.footer_links_1 %}
+                                    <li>
+                                        <a href='{{ footer_link.footer_link.url }}'>{{ footer_link.footer_link.title }}</a>
+                                    </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class='grid gap-8 mb-10'>
+
+                                {% for footer_link in options.footer_links_2 %}
+                                    <li>
+                                        <a href='{{ footer_link.footer_link.url }}'>{{ footer_link.footer_link.title }}</a>
+                                    </li>
+                                {% endfor %}
+
+                            </ul>
+
+                            <div class='flex gap-6 flex-wrap'>
+                                {% if options.twitter_link %}
+                                    <a href='{{ options.twitter_link }}'>
+                                        {% include 'icons/icon-twitter.twig' with { 'color': '#09A0BE' } %}
+                                    </a>
+                                {% endif %}
+
+                                {% if options.facebook_link %}
+                                    <a href='{{ options.facebook_link }}'>
+                                        {% include 'icons/icon-facebook.twig' with { 'color': '#09A0BE' } %}
+                                    </a>
+                                {% endif %}
+
+                                {% if options.instagram_link %}
+                                    <a href='{{ options.instagram_link }}'>
+                                        {% include 'icons/icon-instagram.twig' with { 'color': '#09A0BE' } %}
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class='bg-teal py-4 text-center text-10px' style='color: {{ options.disclaimer_text_color }}'>
+    <div class='container mx-auto px-6 flex items-center justify-center flex-wrap'>
+        <span>&copy; {{"now"|date('Y')}} {{ options.disclaimer_copiright }}</span>
+
+        {% for disclaimer_text in options.disclaimer_texts %}
+            <span class='px-1'>&middot;</span><span>{{ disclaimer_text.disclaimer_text }}</span>
+        {% endfor %}
+    </div>
+</div>

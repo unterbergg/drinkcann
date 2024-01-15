@@ -1,0 +1,63 @@
+<style>
+    [data-id="{{ section.acf_fc_layout }}-{{ loop.index0 }}"] .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+        background-color: rgb({% for color in section.pagination_bar_color %}{{ color }}{% if loop.last %}{% else %},{% endif %}{% endfor %});
+    }
+    [data-id="{{ section.acf_fc_layout }}-{{ loop.index0 }}"] .swiper-pagination-progressbar {
+        background-color: rgb({% for color in section.pagination_bar_color|slice(0,3) %}{{ color }},{% endfor %}0.25);
+    }
+</style>
+
+<div class='py-16 pb-24 lg:py-24 relative' data-section='product-carousel' style='background-color: {{ section.background_color }}'>
+
+    {% if section.is_divider_active %}
+        <div class='absolute top-px left-0 right-0 transform -translate-y-full'>
+            <svg viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M721 28.3988C527.5 70.958 207 123.411 0 9.34447V92H1440V53.9669C1266.5 -14.911 902 -11.4111 721 28.3988Z" fill="{{ section.background_color }}"/>
+            </svg>
+        </div>
+    {% endif %}
+
+    <div class='overflow-hidden'>
+        <div class='container mx-auto px-4'>
+
+            <carousel-component data-id='{{ section.acf_fc_layout }}-{{ loop.index0 }}'>
+
+                <div class='flex justify-center lg:justify-between w-full lg:mb-16 mb-10'>
+                    <div class='lg:w-3/4'>
+                        <h2 class='h2 uppercase lg:text-left text-center' style='color: {{ section.text_color }}'>{{ section.heading }}</h2>
+                    </div>
+
+                    <div class='lg:flex gap-3 hidden lg:items-end lg:w-1/4 justify-end'>
+                        <div>
+                            {% include 'snippets/arrow.twig' with { 'color': section.text_color, 'bg': section.background_color, 'class': 'w-16 js-previous', 'label': 'Navigate to previous card', 'direction': 'left' } %}
+                        </div>
+                        <div>
+                            {% include 'snippets/arrow.twig' with { 'color': section.text_color, 'bg': section.background_color, 'class': 'w-16 js-next', 'label': 'Navigate to next card', 'direction': 'right' } %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider main container -->
+                <div class="swiper pb-20">
+
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        {% for product in section.products %}
+                            <div class="swiper-slide relative" style='color: {{ section.text_color }}'>
+                                {% include 'snippets/card.twig' with { 'section': section, 'product': product.product, 'cta': product.cta_text, 'cta_color': product.cta_color } %}
+                            </div>
+                        {% endfor %}
+                        
+                    </div>
+
+                    
+                    <div class="swiper-pagination lg:hidden"></div>
+                    
+                </div>
+
+            </carousel-component>
+            
+        </div>
+    </div>
+</div>

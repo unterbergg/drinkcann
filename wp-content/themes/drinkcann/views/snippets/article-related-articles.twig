@@ -1,0 +1,112 @@
+{% set articles = post.meta('articles') %}
+
+{% if articles.is_visible %}
+  <section
+    class="
+      relative
+      pt-[55px]
+      md:pt-[100px]
+      pr-[20px]
+      pb-[100px]
+      md:pb-[142px]
+      pl-[20px]
+    "
+    style="
+      background-color: {{ articles.color_secondary }};
+    "
+  >
+
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full'>
+        <svg class='w-full' viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M719 24.7418C912.5 61.8206 1233 107.519 1440 8.14117V92H0V47.0174C173.5 -12.9909 538 -9.94165 719 24.7418Z" fill="{{ articles.color_secondary }}" />
+        </svg>
+    </div>
+
+    {# divider #}
+
+    <div
+      class="
+        pb-[52px]
+        w-full
+        overflow-hidden
+      "
+    >
+      <div
+        class="
+          mx-auto
+          w-full
+          max-w-[1208px]
+        "
+      >
+        {% if articles.heading != blank %}
+          <h2
+            class="
+              h2
+              mb-[46px]
+              md:mb-[80px]
+              text-center
+              uppercase
+            "
+            style="
+              color: {{ articles.color_primary }};
+            "
+          >
+            {{ articles.heading }}
+          </h2>
+        {% endif %}
+        {% if articles.related_articles %}
+          
+          <related-component>
+            <div
+              class="
+                swiper-container
+                relative
+              "
+              data-js-related-articles
+            >
+              <ul
+                class="
+                  swiper-wrapper
+                  flex
+                  items-stretch
+                "
+              >
+                {% for related_article in articles.related_articles %}
+                  {% include 'snippets/blog-list-item.twig' with { blog_item: related_article.article, color_primary: articles.color_primary, color_secondary: articles.color_secondary, class: 'swiper-slide h-auto' } %}
+                {% endfor %}
+              </ul>
+
+              <div
+                class="
+                  swiper-scrollbar
+                  absolute
+                  rounded-[4px]
+                "
+                style="
+                  right: 0;
+                  bottom: -52px;
+                  left: 0;
+                  width: 100%;
+                  background-color: {{ articles.color_primary }}30;
+                "
+                data-js-related-articles-scrollbar
+              >
+                <div
+                  class="
+                    swiper-scrollbar-drag
+                    rounder-[4px]
+                  "
+                  style="
+                    background-color: {{ articles.color_primary }};
+                  "
+                >
+                </div>
+              </div>
+            </div>
+          </related-component>
+          
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endif %}

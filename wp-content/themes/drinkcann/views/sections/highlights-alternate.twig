@@ -1,0 +1,233 @@
+{% if section.is_visible %}
+  <section
+    class="
+      relative
+      flex
+      flex-col
+      lg:flex-row
+      items-stretch
+      lg:min-h-[860px]
+    "
+    style="
+      color: {{ section.color_primary }};
+      background-color: {{ section.color_secondary }};
+    "
+    data-section='highlights-alternate'
+  >
+
+    {% if section.is_mobile_divider_active %}
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full lg:hidden flip'>
+        <svg class='w-full' viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M719 24.7418C912.5 61.8206 1233 107.519 1440 8.14117V92H0V47.0174C173.5 -12.9909 538 -9.94165 719 24.7418Z" fill="{{ section.color_secondary }}" />
+        </svg>
+    </div>
+    {% endif %}
+
+    {% if section.image_decoration %}
+        {% include 'snippets/image.twig' with { 'image': section.image_decoration, 'size': '1536x1536', 'class': 'absolute
+          bottom-[-80px]
+          lg:bottom-[-118px]
+          left-[50%]
+          z-[5]
+          transform
+          -translate-x-1/2
+          block
+          lg:ml-[50px]
+          w-[214px]
+          lg:w-[354px]
+          h-[303px]
+          lg:h-[500px]
+          pointer-events-none' } %}
+    {% endif %}
+    <div
+      class="
+        learn-highlights__main
+        flex
+        justify-end
+        items-stretch
+        w-full
+        overflow-hidden
+        relative
+      "
+    >
+
+        <div class='overflow-hidden absolute inset-0 w-full h-full'>
+
+        {% if section.is_alternative_bubbles_layout %}
+
+            <div class='absolute lg:-left-200px lg:top-100px lg:w-60 w-24 -left-50px top-50px'>
+                {% include 'snippets/circle.twig' %}
+            </div>
+
+            <div class='absolute lg:-left-50px lg:bottom-200px lg:w-20 lg:block hidden'>
+                {% include 'snippets/circle.twig' %}
+            </div>
+
+            <div class='absolute lg:right-150px top-50px w-9 right-20px'>
+                {% include 'snippets/circle.twig' %}
+            </div>
+
+            <div class='absolute lg:-right-50px lg:top-200px lg:w-24 lg:block hidden'>
+                {% include 'snippets/circle.twig' %}
+            </div>
+
+            <div class='absolute lg:-right-50px lg:bottom-50px lg:w-32 lg:block hidden'>
+                {% include 'snippets/circle.twig' %}
+            </div>
+
+            <div class='absolute lg:right-100px lg:bottom-200px lg:w-8 lg:block hidden'>
+                {% include 'snippets/circle.twig' %}
+            </div>
+            
+
+        {% else %}
+
+            <div class='absolute -left-40px lg:left-50px top-50px lg:w-8 w-20'>
+                {% include 'snippets/circle.twig' %}
+            </div>
+
+
+            <div class='absolute -left-150px bottom-150px w-48 lg:block hidden'>
+                {% include 'snippets/circle.twig' %}
+            </div>
+
+            <div class='absolute right-20px lg:-right-50px lg:top-20px top-40px lg:w-24 w-8'>
+                {% include 'snippets/circle.twig' %}
+            </div>
+
+
+            <div class='absolute -right-20px lg:right-50px lg:top-100px top-150px w-20'>
+                {% include 'snippets/circle.twig' %}
+            </div>
+
+            <div class='absolute right-10px bottom-50px w-40 lg:block hidden'>
+                {% include 'snippets/circle.twig' %}
+            </div>
+
+        {% endif %}
+
+        </div>
+
+      <div
+        class="
+          relative
+          flex
+          flex-col
+          justify-center
+          items-center
+          pt-[78px]
+          lg:pt-[114px]
+          pr-[24px]
+          pb-[54px]
+          lg:pb-[112px]
+          pl-[24px]
+          lg:pl-[50px]
+          w-full
+          lg:max-w-[820px]
+        "
+      >
+        
+        {% if section.heading != blank %}
+          <h1
+            class="
+              h2
+              w-full
+              text-center
+              uppercase
+              px-8
+            "
+          >
+            {{ section.heading }}
+          </h1>
+        {% endif %}
+        {% if section.highlights %}
+          <ul
+            class="
+              grid
+              grid-cols-2
+              gap-x-[24px]
+              gap-y-[38px]
+              lg:gap-y-[56px]
+              mt-[36px]
+              lg:mt-[84px]
+              mx-auto
+              w-full
+              max-w-[440px]
+            "
+          >
+            {% for highlight in section.highlights %}
+              <li
+                class="
+                  flex
+                  flex-col
+                  items-center
+                "
+              >
+                {% if highlight.image %}
+                  {% include 'snippets/image.twig' with { 'image': highlight.image, 'size': '1536x1536', 'class': 'block
+                      w-[60px]
+                      h-[60px]' } %}
+                {% endif %}
+                {% if highlight.title %}
+                  <h6
+                    class="
+                      h6
+                      mt-[16px]
+                      mx-auto
+                      w-full 
+                      text-center
+                      uppercase
+                    "
+                  >
+                    {{ highlight.title }}
+                  </h6>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+    <div
+      class="
+        learn-highlights__side
+        relative
+        lg:absolute
+        lg:top-0
+        lg:right-0
+        lg:bottom-0
+        w-full
+        h-full
+      "
+    >
+      {% if section.image_primary %}
+        {% include 'snippets/image.twig' with { 'image': section.image_primary, 'size': '1536x1536', 'class': 'absolute
+            top-0
+            right-0
+            bottom-0
+            left-0
+            lg:relative
+            object-center
+            object-cover
+            block
+            w-full
+            h-full' } %}
+      {% endif %}
+    </div>
+    {% if section.image_secondary != blank %}
+        {% include 'snippets/image.twig' with { 'image': section.image_secondary, 'size': '1536x1536', 'class': 'absolute
+            bottom-0
+            left-0
+            lg:left-[50%]
+            lg:transform
+            lg:-translate-x-1/2
+            block
+            lg:ml-[24px]
+            w-[57%]
+            lg:w-[552px]
+            h-[auto]
+            lg:h-[420px]
+            pointer-events-none' } %}
+    {% endif %}
+  </section>
+{% endif %}

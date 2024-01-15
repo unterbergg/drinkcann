@@ -1,0 +1,70 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js ie ie6 lt-ie9 lt-ie8 lt-ie7" {{site.language_attributes}}> <![endif]-->
+<!--[if IE 7]><html class="no-js ie ie7 lt-ie9 lt-ie8" {{site.language_attributes}}> <![endif]-->
+<!--[if IE 8]><html class="no-js ie ie8 lt-ie9" {{site.language_attributes}}> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" {{site.language_attributes}} style='margin: 0 !important;'> <!--<![endif]-->
+<head>
+    <meta charset="{{site.charset}}" />
+        <title>
+            {% if wp_title %}
+                {{ wp_title }} - {{ site.name }}
+            {% else %}
+                {{ site.name }}
+            {% endif %}
+        </title>
+    <meta name="description" content="{{site.description}}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="pingback" href="{{site.pingback_url}}" />
+
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>#}
+
+    <!-- todo: move to the right place -->
+    <script type='application/json' class='js-products'>
+		{
+			"sold_out_link": "{{ post.sold_out_link|default(options.sold_out_link) }}",
+            "cta": {{ options.cta|json_encode }}
+		}
+	</script>
+
+    {% if fn('is_home') or fn('is_category') %}
+
+
+        <style>
+            :root {
+            --megamenu-background-color-desktop: {{ options.blog_megamenu_bg_color_desktop }};
+            --megamenu-background-color-mobile: {{ options.blog_megamenu_bg_color_mobile }};
+            --mm-open-secondary-menu-text-color: {{ options.blog_primary_menu_text_color }};
+            --primary-menu-text-color: {{ options.blog_primary_menu_text_color }};
+            --secondary-menu-text-color: {{ options.blog_secondary_menu_text_color }};
+            --text-color: {{ post.text_color }};
+            }
+        </style>
+
+    {% else %}
+
+        <style>
+            :root {
+            --megamenu-background-color-desktop: {{ post.megamenu_bg_color_desktop }};
+            --megamenu-background-color-mobile: {{ post.megamenu_bg_color_mobile }};
+            --mm-open-secondary-menu-text-color: {{ post.primary_menu_text_color }};
+            --primary-menu-text-color: {{ post.primary_menu_text_color }};
+            --secondary-menu-text-color: {{ post.secondary_menu_text_color }};
+            --text-color: {{ post.text_color }};
+            }
+        </style>
+
+    {% endif %}
+
+
+    
+    {{function('wp_head')}}
+
+
+    <script type="text/javascript" src="https://cdn1.stamped.io/files/widget.min.js"></script>
+    <script type="text/javascript">//<![CDATA[
+        StampedFn.init({ apiKey: 'pubkey-tk5d28IG6PiR61rJsjLHGag618L4zU', storeUrl: 'drinkcann.com' });
+        // ]]></script>
+
+    <span class='mobile-nav__spacer spacer h-[116px] block lg:hidden' style="background-color: {{ post.megamenu_bg_color_mobile }}"></span>

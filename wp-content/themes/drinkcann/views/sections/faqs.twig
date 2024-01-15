@@ -1,0 +1,53 @@
+{% set color = section.text_color|trim('#', 'left')|upper %}
+
+<style>
+    [data-id='{{ section.acf_fc_layout }}-{{ loop.index0 }}'] .squiggle:after {
+        background-image: url("data:image/svg+xml,<svg width='52' height='10' viewBox='0 0 52 10' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M26.3456 5.5155C19.8495 0.496856 10.2374 1.20194 0 6.47465V4.4622C10.5562 -0.974704 20.1801 -1.77683 27.5464 3.91414C30.8728 6.48396 34.3418 7.8579 38.203 7.97617C42.0826 8.09501 46.8952 7.09206 52 4.46288V6.47534C46.708 9.20097 42.4583 10.1199 38.1432 9.98771C33.8097 9.85497 29.9504 8.30049 26.3456 5.5155Z' fill='{{ section.text_color | url_encode }}'/></svg>");
+    }
+</style>
+
+<section class='relative pt-16 pb-32 lg:pt-24 lg:pb-40 z-40' data-section='faqs' style='color: {{ section.text_color }}; background-color: {{ section.background_color }};' data-id='{{ section.acf_fc_layout }}-{{ loop.index0 }}'>
+
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full'>
+        <svg class='w-full' viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M719 24.7418C912.5 61.8206 1233 107.519 1440 8.14117V92H0V47.0174C173.5 -12.9909 538 -9.94165 719 24.7418Z" fill="{{ section.background_color }}"/>
+        </svg>
+    </div>
+
+
+    <div class='container mx-auto px-4'>
+        <div class='grid lg:grid-cols-3'>
+            <div class='h2 uppercase'>
+                {{ section.heading }}
+            </div>
+            <div class='lg:col-span-2'>
+                {% for block in section.faqs %}
+                    <faq-component
+                      class='
+                        block
+                        py-6
+                        relative
+                        {% if loop.last != true %}
+                          squiggle
+                        {% endif %}
+                      '
+                    >
+                        <button class='h4 uppercase flex items-center gap-2 js-faq-toggle cursor-pointer w-full text-left'>
+                            <span class='flex-auto'>
+                                {{ block.question }}
+                            </span>
+                            <span class='triangle transition duration-300'>
+                                {% include 'icons/icon-triangle-down.twig' with { 'color': post.primary_menu_text_color } %}
+                            </span>
+                        </button>
+                        <div class='answer font-medium body2'>
+                            <div class='block mt-6'>
+                                {{ block.answer }}
+                            </div>
+                        </div>
+                    </faq-component>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

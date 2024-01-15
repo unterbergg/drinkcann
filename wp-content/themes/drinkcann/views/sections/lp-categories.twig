@@ -1,0 +1,94 @@
+<style>
+    [data-section='categories'] .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+        background-color: rgb(
+        {% for color in section.pagination_bar_color %}
+            {{ color }}
+            {% if loop.last %}
+            {% else %},{% endif %}{% endfor %});
+    }
+    [data-section='categories'] .swiper-pagination-progressbar {
+        background-color: rgb({% for color in section.pagination_bar_color|slice(0,3) %}{{ color }},{% endfor %}0.25);
+    }
+</style>
+<section class='relative pt-16 pb-24 lg:pt-24 lg:pb-40 z-30' data-section='categories'
+         style='color: {{ section.text_color }}; background-color: {{ section.background_color|default('#FAF6F9') }};'>
+
+    <div class='w-full overflow-hidden absolute inset-0 h-full'>
+
+        <div class='absolute hidden lg:block lg:w-52 lg:-left-24 lg:top-16'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+        <div class='absolute hidden lg:block lg:w-8 lg:left-[123px] lg:top-[302px]'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+        <div class='absolute hidden lg:block lg:w-[109px] lg:right-[45px] lg:top-[108px]'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+        <div class='absolute hidden lg:block lg:w-[77px] lg:top-[288px] lg:right-[137px]'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+    </div>
+
+    <div class="overflow-hidden">
+        <div class='absolute top-px left-0 right-0 transform -translate-y-full'>
+            <svg viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M721 28.3988C527.5 70.958 207 123.411 0 9.34447V92H1440V53.9669C1266.5 -14.911 902 -11.4111 721 28.3988Z" fill="{{ section.background_color|default('#FAF6F9') }}"/>
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-4 lg:mb-[200px] mb-[60px]">
+            <h5 class='text-center uppercase lg:mb-20 mb-11 lg:block text-center lg:text-8xl text-5.5xl font-gotham-condensed font-bold w-full lg:w-3/4 mx-auto text-center'>
+                {{ section.header }}
+            </h5>
+
+            <categories-grid-component>
+                <div class="lg:pt-[64px]" style="color: {{ section.background_color|default('#FAF6F9') }};">
+                    <div class="swiper pb-[60px]">
+
+                    <div class="categories swiper-wrapper flex justify-between lg:max-w-[1332px] my-0 mx-auto lg:flex-wrap">
+
+                        {% for key, category in section.lp_categories %}
+                            {% set term = fn('get_term', category.category) %}
+                            {% set featured_section = fn('get_field', 'featured_section', term) %}
+                            <a href="{{ fn('get_term_link', term) }}" class="swiper-slide swiper-slide-{{ key}} px-8 categories__card max-w-unset h-80 bg-cover rounded-[10px] p-4 relative"
+                                 style="background-image: url(  {{ function('wp_get_attachment_image_url', category.image, 'full', 'false', {'class' : 'object-cover h-full '}) }}  );"
+                               data-bg="{{ function('wp_get_attachment_image_url', category.image, 'full', 'false', {'class' : 'object-cover h-full '}) }}"
+                            >
+                                <div class="card__head font-gotham-condensed font-bold mb:text-[92px] text-[60px] leading-[85%] mb-4 uppercase">
+                                    {{ term.name }}
+                                </div>
+                                {% if term.description != "" %}
+                                    <div class='card__description font-normal text-18px leading-[122%] uppercase '>
+                                        {{ term.description }}
+                                    </div>
+                                {% endif %}
+                                {% include 'snippets/button.twig' with {
+                                    class: 'card-button lg:hidden no-hover',
+                                    'is_button': true,
+                                    'bg_color': '#FAF6F9',
+                                    'text_color': '#09A0BE',
+                                    'link': {
+                                        'title': "Shop",
+                                        'url': '' },
+                                    'bg_color_class' : 'card-button'
+                                } %}
+                            </a>
+                        {% endfor %}
+                    </div>
+
+                    <div class="swiper-pagination lg:hidden"></div>
+
+                </div>
+            </categories-grid-component>
+
+        </div>
+
+    </div>
+
+
+
+</section>

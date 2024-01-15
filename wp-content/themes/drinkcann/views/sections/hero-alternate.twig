@@ -1,0 +1,63 @@
+<div class='flex flex-wrap items-center relative' data-section='hero-alternate' style='background-color: {{ section.section_bg_color }}; color: {{ section.section_text_color }};'>
+
+    <div class='container mx-auto px-4 text-center pb-24 pt-16 lg:py-48 block relative z-10'>
+        <div class='w-full mx-auto lg:w-2/3 max-w-xs sm:max-w-sm lg:max-w-none'>
+            <h1 class='display uppercase mb-10'>{{ section.heading }}</h1>
+            <div class='h4 uppercase max-w-xl mx-auto'>
+                <p>{{ section.description }}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='absolute inset-0 w-full h-full overflow-hidden'>
+        <div class='absolute z-10 -right-36 lg:right-0 top-8 lg:top-40 w-72 lg:w-1/3'>
+            {% include 'snippets/image.twig' with { 'image': section.product_image_top } %}
+        </div>
+    </div>
+
+    <div class='absolute inset-0 w-full h-full max-w-screen-sm lg:max-w-screen-2xl mx-auto'>
+
+        <div class='absolute z-10 -left-24 lg:left-0 -bottom-1/4 lg:-bottom-52  w-72 lg:w-1/3'>
+            {% include 'snippets/image.twig' with { 'image': section.product_image_bottom } %}
+        </div>
+    </div>
+
+    <div class='absolute inset-0 z-0 w-full h-full overflow-hidden'>
+
+        <div class='hidden z-0 lg:block absolute top-0 left-0 w-40'>
+            {% include 'snippets/image.twig' with { 'image': section.line_art_overlay_desktop } %}
+        </div>
+
+        <div class='hidden z-0 lg:block absolute right-0 -bottom-20px w-52'>
+            {% include 'snippets/image.twig' with { 'image': section.line_art_overlay_desktop_bottom_right } %}
+        </div>
+
+        <div class='lg:hidden z-0 absolute left-0 bottom-150px'>
+            {% include 'snippets/image.twig' with { 'image': section.line_art_overlay_mobile } %}
+        </div>
+
+        <div class='lg:hidden z-0 absolute right-0 top-0'>
+            {% include 'snippets/image.twig' with { 'image': section.line_art_overlay_mobile_right } %}
+        </div>
+
+
+        <div class='absolute lg:right-250px lg:top-150px lg:left-auto -left-10px lg:w-11 w-14 top-30px'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute lg:right-200px lg:top-200px lg:left-auto left-45px top-10px lg:w-8 w-6'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute lg:right-250px lg:-bottom-20px w-24 -right-50px bottom-50px'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute lg:left-250px lg:bottom-250px lg:right-auto right-20px bottom-150px lg:w-11 w-7'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+    </div>
+
+</div>

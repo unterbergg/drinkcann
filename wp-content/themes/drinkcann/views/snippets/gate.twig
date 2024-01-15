@@ -1,0 +1,18 @@
+<style>
+    .gate-popup input::placeholder {
+        color: {{ options.gate_text_color }};
+    }
+
+    .gate-popup input:focus {
+        outline: none;
+    }
+</style>
+
+<gate-component class='fixed top-0 z-50 w-full h-screen py-10 overflow-x-hidden overflow-y-auto text-center gate-popup lg:py-14' style='color: {{ options.gate_text_color }}' data-js-gate-modal>
+    <div class='relative inline-block transform -translate-x-1/2 w-124 lg:w-191' style="margin-right: 50%;margin-left: 50%;">
+        {% include "snippets/zipcode-form.twig" %}
+        {% include 'snippets/unavailable.twig' %}
+        {% include 'snippets/collectemail.twig' %}
+        {% include 'snippets/error-pop-up.twig' %}
+    </div>
+</gate-component>

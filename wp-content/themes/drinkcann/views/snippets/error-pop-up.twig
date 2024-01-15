@@ -1,0 +1,48 @@
+<style>
+	.error-popup input::placeholder {
+		color: {{options.error_text_color}}
+		;
+	}
+
+	.error-popup input:focus {
+		outline: none;
+	}
+	.error-hero-div {
+	    width: 375px;
+	    bottom: -450px;
+	    right: 63px;
+    }
+    
+    @media (min-width:1024px) {
+    .error-hero-div {
+	    width: 538px;
+	    bottom: -200px;
+	    right: 600px;
+    }
+</style>
+
+<div class=' w-124 lg:w-191 fixed left-1/2 top-1/2 transform -translate-x-1/2 z-60 error-popup' style='color: {{ options.error_text_color }}' data-js-error-modal>
+	<svg viewbox="0 0 764 748" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M764 369.704C764 589.627 581.831 748 362.979 748C144.128 748 0 509.986 0 290.062C0 70.1391 223.494 -21.3352 418.456 4.1502C613.419 29.6356 764 136.355 764 369.704Z" fill="{{ options.error_background_color }}"/>
+	</svg>
+
+	<div class='absolute inset-0 w-screen sm:w-full h-full py-16 lg:py-12 px-5 sm:px-12 lg:left-auto lg:transform-none left-1/2 transform -translate-x-1/2 lg:translate-x-0'>
+		<div class='mx-auto w-20 mb-16 lg:block hidden'>
+			{% include 'snippets/logo.twig' with { 'color': options.error_text_color } %}
+		</div>
+
+		<div class='h4 uppercase mx-auto mb-3 lg:mb-3 lg:max-w-md'>
+			{{ "Upps" }}
+		</div>
+
+		<div class='body2 mx-auto mb-4 lg:mb-8 max-w-md'>
+			{{ "Something went wrong, please try again" }}
+		</div>
+
+	</div>
+
+
+	<div class='absolute error-hero-div'>
+		{% include 'snippets/image.twig' with { 'image': options.error_lifestyle_image, 'size': '1536x1536' } %}
+	</div>
+</div>

@@ -1,0 +1,75 @@
+<section class="lpbanner lg:pt-52 pt-7 lg:pb-36 pb-20 lg:px-60 px-12 bg-pink text-teal relative">
+
+    <div class='w-full overflow-hidden absolute inset-0 h-full'>
+
+        <div class='absolute lg:top-[129px] lg:w-11 w-6 -top-5 lg:right-72 right-unset left-10 lg:left-unset'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+        <div class='absolute lg:right-[200px] right-4 lg:top-[209px] top-unset lg:bottom-auto bottom-40 lg:w-8 w-7'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+        <div class='block absolute lg:left-72 lg:bottom-80 bottom-unset lg:top-unset top-11 -left-5 w-14'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+        <div class='absolute lg:hidden block lg:right-50px lg:bottom-80px -lg:right-20px -right-16 lg:bottom-1/2 bottom-4 lg:w-16 w-28'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+    </div>
+
+    <div class="relative z-10">
+        <h1 class="h1 uppercase mb-4 lg:mb-10 text-center relative z-10">
+            {{ section.lp_title }}
+        </h1>
+        <div class="text-[40px] text-center max-w-2xl mx-auto font-gotham-condensed relative z-10 max-w-[641px] leading-[44px]">
+            {{ section.lp_description }}
+        </div>
+
+        {% if section.left_image %}
+            <div class='
+                absolute
+                lg:-bottom-52
+                -bottom-40
+                lg:-left-28
+                -left-20
+                -rotate-15
+                transform
+                w-[120px]
+                md:w-[195px]
+                h-[229px]
+                md:h-[378px]
+                z-9'
+            >
+                {% include 'snippets/image.twig' with { 'image': section.left_image, class: 'filter-shadow object-center object-cover block w-full h-full' } %}
+            </div>
+        {% endif %}
+        {% if section.right_image %}
+            <div class='
+                absolute
+                top-8
+                lg:-right-28
+                -right-20
+                rotate-15
+                transform
+                w-[120px]
+                md:w-[195px]
+                h-[229px]
+                md:h-[378px]
+                z-9'
+            >
+                {% include 'snippets/image.twig' with { 'image': section.right_image, class: 'filter-shadow object-center object-cover block w-full h-full' } %}
+            </div>
+        {% endif %}
+    </div>
+    <img src="{{ fn('get_template_directory_uri') }}/assets/images/Illo1.svg"
+         alt="Decoration"
+         class="absolute lg:bottom-[-1.5rem] lg:right-0 -right-11 z-9 illo1"
+    >
+    <img src="{{ fn('get_template_directory_uri') }}/assets/images/Illo2.svg"
+         alt="Decoration"
+         class="absolute top-0 left-0 z-9 illo2"
+    >
+</section>

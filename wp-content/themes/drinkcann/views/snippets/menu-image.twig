@@ -1,0 +1,49 @@
+{% if fn('is_home') or fn('is_category') %}
+
+<style>
+    .menu-image__tag {
+        background-color: {{ favorite_item.tag_bg_color }};
+        color: {{ options.blog_megamenu_bg_color_mobile }};
+    }
+
+    @media (min-width: 1024px)  {
+        .menu-image__tag {
+            color: {{ options.blog_megamenu_bg_color_desktop }};
+        }
+    }
+</style>
+
+{% else %}
+
+<style>
+    .menu-image__tag {
+        background-color: {{ favorite_item.tag_bg_color }};
+        color: {{ post.megamenu_bg_color_mobile }};
+    }
+
+    @media (min-width: 1024px)  {
+        .menu-image__tag {
+            color: {{ post.megamenu_bg_color_desktop }};
+        }
+    }
+</style>
+
+{% endif %}
+
+<div class='menu-image mb-6 relative'>
+
+    {% if favorite_item.tag != '' %}
+        <div class='menu-image__tag absolute top-20px left-0 rounded-2xl has-shadow uppercase text-12px tracking-1px py-2 px-3 z-10'>
+            {{ favorite_item.tag }}
+        </div>
+    {% endif %}
+
+    <a href='{{ favorite_item.favorite_link.url }}' class='block'>
+        {% include 'snippets/image.twig' with { 'image': favorite_item.image, 'size': '1536x1536' } %}
+    </a>
+</div>
+<div>
+    <a href='' class='eyebrow2 uppercase'>
+        {{ favorite_item.favorite_link.title }}
+    </a>
+</div>

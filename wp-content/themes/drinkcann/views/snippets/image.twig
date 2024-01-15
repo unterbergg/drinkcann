@@ -1,0 +1,11 @@
+{#
+variables
+---------
+image
+size (thumbnail, medium, large, 1536x1536, 2048x2048)
+fill (image-fill, lg:image-fill)
+#}
+
+{% set img = Image(image) %}
+
+<img src='{{ img.src(size) }}' class='{{ fill }} {{ class }}' alt='{{ img.alt }}' loading='lazy' width='{{ img.width }}' height='{{ img.height }}' data-index='{{ index }}' />

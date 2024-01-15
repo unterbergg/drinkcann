@@ -1,0 +1,82 @@
+<div class='relative flex flex-col' data-section='cta' style='background-color: {{ section.color_secondary }}'>
+
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full w-full'>
+        <svg class='w-full' viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M721 28.3988C527.5 70.958 207 123.411 0 9.34447V92H1440V53.9669C1266.5 -14.911 902 -11.4111 721 28.3988Z" fill="{{ section.color_secondary }}"/>
+        </svg>
+    </div>
+
+    <div class='overflow-hidden absolute inset-0 w-full h-full'>
+
+
+        <div class='absolute lg:left-250px left-40px lg:top-60px top-40px w-8'>
+            {% include 'snippets/circle.twig' with { 'color': section.color_primary } %}
+        </div>
+
+        <div class='absolute lg:-left-15px lg:top-150px -left-100px top-50px w-32'>
+            {% include 'snippets/circle.twig' with { 'color': section.color_primary } %}
+        </div>
+
+        <div class='absolute lg:left-200px lg:top-200px lg:w-8 hidden lg:block'>
+            {% include 'snippets/circle.twig' with { 'color': section.color_primary } %}
+        </div>
+
+        <div class='absolute lg:left-150px lg:top-250px lg:w-8 hidden lg:block'>
+            {% include 'snippets/circle.twig' with { 'color': section.color_primary } %}
+        </div>
+
+        <div class='absolute lg:left-200px lg:-bottom-20px lg:w-32 w-36 -left-55px bottom-25px'>
+            {% include 'snippets/circle.twig' with { 'color': section.color_primary } %}
+        </div>
+
+
+        <div class='absolute lg:right-100px top-0 lg:w-32 w-24 -right-50px'>
+            {% include 'snippets/circle.twig' with { 'color': section.color_primary } %}
+        </div>
+
+        <div class='absolute lg:right-250px lg:top-150px lg:w-14 hidden lg:block'>
+            {% include 'snippets/circle.twig' with { 'color': section.color_primary } %}
+        </div>
+
+        <div class='absolute lg:right-100px lg:bottom-250px w-8 bottom-200px right-25px'>
+            {% include 'snippets/circle.twig' with { 'color': section.color_primary } %}
+        </div>
+
+        <div class='absolute lg:-right-20px lg:bottom-100px w-32 bottom-35px -right-100px'>
+            {% include 'snippets/circle.twig' with { 'color': section.color_primary } %}
+        </div>
+
+    </div>
+
+    <div class='relative z-20 py-24'>
+        <div class='container mx-auto px-4'>
+            <div class='w-full lg:w-2/3 mx-auto text-center lg:mb-24 mb-16 has-underline' style='color: {{ section.color_primary }}'>
+                <h2
+                  class='
+                    h2
+                    uppercase
+                    mx-auto
+                    lg:mb-8 m-6
+                    max-w-[535px]
+                  '
+                >
+                    {{ section.heading }}
+                </h2>
+                <div
+                  class='
+                    body2
+                    mx-auto
+                    mb-12
+                    max-w-[416px]
+                  '
+                >
+                    {{ section.description }}
+                </div>
+                <div>
+                    {% include 'snippets/button.twig' with { 'bg_color': section.color_primary, 'text_color': section.color_secondary, 'link': section.cta, 'class':'cta-button', 'bg_color_class':'cta-button' } %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

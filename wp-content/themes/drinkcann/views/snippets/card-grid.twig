@@ -1,0 +1,56 @@
+<div
+        class='relative mr-2 card-grid mb-0 lg:pb-card pb-card-mob'
+        data-id="{{ product.grassdoor_product_id }}"
+        data-is-bundle="{{ product.grassdoor_product_is_bundle }}"
+        data-js-grassdoor-product
+>
+    {% if product.badge %}
+            <div class='absolute top-70px left-0 right-0 text-center z-10 lg-top-150px w-24 lg:w-full'>
+                <div class="absolute bottom-badge left-0">
+                    <span class="rounded-full has-shadow uppercase lg-text-12px text-8px tracking-1px py-2 px-4 inline-block"
+                          style='color: {{ product.badge_text_color }}; background-color: {{ product.badge_background_color|default('#faf6f9') }};'>
+                        {{ product.badge }}
+                    </span>
+                </div>
+            </div>
+    {% endif %}
+    <a href='{{ function('get_permalink', product.ID) }}' class='w-full relative mb-6 pt-150p block card'>
+        {% include 'snippets/image.twig' with { 'image': product.card_image_for_category ? product.card_image_for_category : product.card_image, 'size': '1536x1536', 'class': 'absolute inset-0 w-full h-full object-contain transition duration-300' } %}
+        {% if product.card_image_hover %}
+            {% include 'snippets/image.twig' with { 'image': product.card_image_hover, 'size': '1536x1536', 'class': 'absolute inset-0 w-full h-full object-contain transition duration-300 card-bg-hover' } %}
+        {% endif %}
+    </a>
+    <div class='text-center mb-3 lg:mb-6 relative z-20'>
+        <div class='h4 uppercase mb-2 product-title '>{{ product.post_title }}</div>
+        <div class='h6 uppercase product-price'>{% if product.size %}{{ product.size }} &middot;
+            {% endif %}<span data-js-grassdoor-product-price>{{ product.price }}</span></div>
+    </div>
+    <div class="button__wrapper absolute bottom-0 left-0 right-0">
+        <div class='flex justify-center mx-auto' data-js-grassdoor-product-form>
+            {% include 'snippets/button.twig' with {
+                class: 'card-button',
+                'is_button': false,
+                'text_wrapper_js': 'data-js-grassdoor-product-cta-text',
+                'data_js':'data-js-grassdoor-product-cta',
+                'id': product.grassdoor_product_id,
+                'is_bundle': product.grassdoor_product_is_bundle,
+                'bg_color': section.text_color|default('#09A0BE'),
+                'text_color': cta_color,
+                'link': {
+                    'title': 'SHOP NOW',
+                    'url': function('get_permalink', product.ID) },
+                'bg_color_class' : 'card-button'
+            } %}
+        </div>
+    </div>
+    {#<div class='flex justify-center'>
+        {% include 'snippets/button.twig' with {
+            'bg_color': section.text_color|default('#09A0BE'),
+            'text_color': cta_color,
+            'link': {
+                'url': function('get_permalink', product.ID),
+                'title': 'Shop now'
+            },
+        } %}
+    </div>#}
+</div>

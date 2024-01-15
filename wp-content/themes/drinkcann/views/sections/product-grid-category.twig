@@ -1,0 +1,51 @@
+<section class='py-52 lg:py-96 relative z-20'
+         data-section='products'
+         style='background-color: {{ post.plp_bg ? post.plp_bg : post.megamenu_bg_color_desktop|default('#EFE4EC') }}; color: {{ post.primary_menu_text_color }}'>
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full'>
+        <svg class='w-full' viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M721 28.3988C527.5 70.958 207 123.411 0 9.34447V92H1440V53.9669C1266.5 -14.911 902 -11.4111 721 28.3988Z" fill="{{ section.background_color }}" />
+        </svg>
+    </div>
+
+    <div class='container mx-auto px-4'>
+
+        <div class='grid grid-x-gap-0 grid-y-gap-20'>
+
+
+            <div class='relative'>
+                <div class='grid grid-cols-2 lg:grid-cols-4 gap-x-0 gap-y-20'>
+                    {% for key, product in posts %}
+
+                        {% include 'snippets/card-grid.twig' with {
+                            'section': posts,
+                            'product': product,
+                            'product_meta': product.meta('categories'),
+                            'cta': cta_text,
+                            'cta_color': post.plp_bg ? post.plp_bg : post.megamenu_bg_color_desktop|default('#EFE4EC')
+                        } %}
+
+                        {% if key == 1 and post.meta('featured_section_image') %}
+                            <div class='col-span-2 relative roun lg:order-none'>
+
+                            <div class='lg:pt-100px p-30px lg:pl-55px w-full h-full bg-cover rounded-2xl lg:bg-left bg-center'
+                                 style='background-image: url(  {{ function('wp_get_attachment_image_url', post.meta('featured_section_image'), 'full', 'false', {'class' : 'object-cover h-full '}) }}  );'>
+                                 <div class=' lg:top-100px top-30px uppercase' style='color: {{ post.meta('featured_section_text_color')|default('#09A0BE') }}'>
+                                    <div class='mb-6'>
+                                        <h2 class='display'>{{ post.meta('featured_section_title') }}</h2>
+                                    </div>
+                                    <div class='h6'>
+                                        {{ post.meta('featured_section_description') }}
+                                    </div>
+                                 </div>
+                            </div>
+
+
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+    </div>
+
+</section>

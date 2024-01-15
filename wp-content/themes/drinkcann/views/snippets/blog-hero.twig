@@ -1,0 +1,147 @@
+{% set colors = post.meta('hero').colors %}
+{% set general = post.meta('hero').general %}
+
+  <section
+    class="
+      relative
+      flex
+      flex-col-reverse
+      lg:flex-row
+      items-center
+      lg:pb-[24px]
+      lg:min-h-[645px]
+    "
+    style="
+      background-color: {{ colors.color_secondary }};
+    "
+  >
+    <div
+      class="
+        blog-hero__main
+        flex
+        flex-col
+        lg:flex-row
+        lg:justify-end
+        items-center
+        w-full
+      "
+    >
+      <div
+        class="
+          flex
+          flex-col
+          justify-center
+          items-start
+          pt-[44px]
+          lg:pt-[24px]
+          pr-[24px]
+          xl:pr-[88px]
+          pb-[60px]
+          md:pb-[128px]
+          lg:pb-[24px]
+          pl-[24px]
+          xl:pl-[110px]
+          w-full
+          max-w-[375px]
+          lg:max-w-[645px]
+        "
+      >
+        {% if general.label != "" %}
+          {% if colors.color_quaternary != "" %}
+            <style>
+                @media (max-width: 1023.98px) {
+                    .label-{{ post.id }} {
+                        color: {{ colors.tag_text_mobile }} !important;
+                        background-color: {{ colors.tag_background_mobile }};
+                        border-color: {{ colors.tag_background_mobile }};
+                        box-shadow: 4px 4px 40px 0 rgba(0, 0, 0, 0.08);
+                    }
+                }
+            </style>
+          {% endif %}
+          <div
+            class="
+              label-{{ post.id }}
+              absolute
+              eyebrow2
+              lg:relative
+              top-[18px]
+              lg:top-0
+              left-[20px]
+              lg:left-0
+              z-[5]
+              mb-[28px]
+              px-[15px]
+              flex
+              items-center
+              h-[32px]
+              text-center
+              border-[1px]
+              border-solid
+              rounded-[16px]
+              uppercase
+            "
+            style="
+              color: {{ colors.color_primary }};
+            "
+          >
+            {{ general.label }}
+          </div>
+        {% endif %}
+        {% if general.heading != "" %}
+          <h1
+            class="
+              h3
+              w-full
+              text-center
+              lg:text-left
+              uppercase
+            "
+            style="
+              color: {{ colors.color_primary }};
+            "
+          >
+            {{ general.heading }}
+          </h1>
+        {% endif %}
+        {% if general.description != "" %}
+          <p
+            class="
+              body1
+              mt-[16px]
+              lg:mt-[20px]
+              text-center
+              lg:text-left
+            "
+            style="
+              color: {{ colors.color_primary }};
+            "
+          >
+            {{ general.description }}
+          </p>
+        {% endif %}
+        {% if general.cta != "" %}
+            <div class='mt-10 mx-auto lg:mx-0'>
+                {% include 'snippets/button.twig' with { 'bg_color': colors.color_primary, 'text_color': colors.color_secondary, 'link': general.cta,  'class': 'hero-blog-button w-full max-w-[325px]', 'bg_color_class' : 'hero-blog-button' } %}
+            </div>
+        {% endif %}
+      </div>
+    </div>
+    <div
+      class="
+        blog-hero__side
+        relative
+        lg:absolute
+        lg:top-0
+        lg:right-0
+        lg:bottom-0
+        w-full
+        h-full
+      "
+    >
+      {% if general.image_primary != "" %}
+        {% include 'snippets/image.twig' with { 'image': general.image_primary, 'size': '2048x2048', 'fill': 'absolute lg:relative top-0 right-0 bottom-0 left-0 object-center object-cover block w-full h-full' } %}
+      {% endif %}
+    </div>
+    
+  </section>

@@ -1,0 +1,155 @@
+<style>
+    .unavailable-popup input::placeholder {
+        color: {{ options.unavailable_text_color }};
+    }
+
+    .unavailable-popup input:focus {
+        outline: none;
+    }
+
+    .unavailable-hero-div {
+	    width: 375px;
+	    bottom: -450px;
+	    right: 63px;
+    }
+
+    @media (min-width:1024px) {
+    .unavailable-hero-div {
+	    width: 538px;
+	    bottom: -200px;
+	    right: 600px;
+    }
+}
+</style>
+
+<div class=' w-124 lg:w-191 fixed left-1/2 top-1/2 transform -translate-x-1/2 z-60 unavailable-popup' style='color: {{ options.unavailable_text_color }}' data-js-unavailable-modal >
+    <svg viewBox="0 0 764 748" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M764 369.704C764 589.627 581.831 748 362.979 748C144.128 748 0 509.986 0 290.062C0 70.1391 223.494 -21.3352 418.456 4.1502C613.419 29.6356 764 136.355 764 369.704Z" fill="{{ options.unavailable_background_color }}"/>
+    </svg>
+
+    <div class='absolute inset-0 w-screen sm:w-full h-full py-16 lg:py-12 px-5 sm:px-12 lg:left-auto lg:transform-none left-1/2 transform -translate-x-1/2 lg:translate-x-0'>
+        <div class='mx-auto w-20 mb-16 lg:block hidden'>
+            {% include 'snippets/logo.twig' with { 'color': options.unavailable_text_color } %}
+        </div>
+
+        <div class='h4 uppercase mx-auto mb-3 lg:mb-3 lg:max-w-md'>
+            {{ options.unavailable_heading }}
+        </div>
+
+        <div class='body2 mx-auto mb-4 max-w-md'>
+            {{ options.unavailable_description }}
+        </div>
+
+        <data-capture-component>
+            <form>
+
+                <input type="hidden" name="g" value="{{ options.unavailable_klaviyo_id }}">
+
+                {% if options.input_type|length > 1 %}
+                    {% set text_size = 'text-[37px] lg:text-[58px]' %}
+                {% else %}
+                    {% set text_size = 'text-[75px] lg:text-[116px]' %}
+                {% endif %}
+
+                {% if 'email' in options.input_type %}                
+                    <div class='{{ text_size }} mt-2 leading-none'>
+                        <input type='email' autocomplete="email" name='email' id='k_id_email_popup' placeholder='{{ options.unavailable_input_placeholder }}' class='w-full text-center uppercase bg-transparent font-bold leading-none font-gotham-condensed' style='color: {{ options.unavailable_text_color }}' required />
+                    </div>
+                {% endif %}
+
+                {% if 'phone' in options.input_type %}
+                    <div class='{{ text_size }} mt-2 leading-none'>
+                        <input type='tel' autocomplete="off" name='phone_number' pattern="[0-9]{10}" class='w-full text-center uppercase bg-transparent font-bold leading-none font-gotham-condensed' style='color: {{ options.unavailable_text_color }}' placeholder='{{ options.unavailable_input_placeholder_phone }}' required />
+                    </div>
+                {% endif %}
+
+                <div class='body2 mt-2'>
+                    <input type="checkbox" id="consent-popup" name="consent" value="true" required>
+                    <label for="consent-popup">{{ options.consent_message }}</label>
+                </div>
+
+                <div class='mt-10'>
+                    {% include 'snippets/button.twig' with { 'is_button': true, 'bg_color': options.unavailable_text_color, 'text_color': options.unavailable_background_color, 'link': { 'title': options.unavailable_cta_text }, 'is_button': true, 'class' : 'unavailable-button', 'bg_color_class' : 'unavailable-button' } %}
+                </div>
+
+                <div class='message-container flex items-center justify-center'>
+                    <div class='mt-10 h4 uppercase'>
+                        <div class='success_message'>{{ options.unavailable_success_message }}</div>
+                        <div class='error_message'>{{ options.unavailable_error_message }}</div>
+                    </div>
+                </div>
+
+            </form>
+        </data-capture-component>
+
+        {% if options.unavailable_secondary_cta_links|length > 0 %}
+            <div class='mt-4'>
+            {% for cta in options.unavailable_secondary_cta_links %}
+                <div class="w-1/2 mx-auto mb-2 lg:mb-3">
+                    <a href='{{ cta.link.url }}' class='eyebrow1 uppercase' target={{  cta.link['target'] }}>{{ cta.link.title }}</a>
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+
+        <style>
+            .popup__close {
+                position: absolute;
+                right: 15%;
+                top: 8%;
+                opacity: 1;
+            }
+            .popup__close:hover {
+                opacity: 1;
+            }
+            .popup__close:before, .popup__close:after {
+                position: absolute;
+                left: 21px;
+                content: ' ';
+                height: 24.08px;
+                width: 4px;
+                background-color: #B03461;
+                top: 12px;
+            }
+            .popup__close:before {
+                transform: rotate(45deg);
+            }
+            .popup__close:after {
+                transform: rotate(-45deg);
+            }
+
+            @media (max-width: 1023px) {
+                .popup__close {
+                    top: 3%;
+                    right: 80px;
+                }
+            }
+
+            @media (max-width: 639px) {
+                .popup__close {
+                    position: fixed;
+                    right: 22%;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .popup__close {
+                    position: fixed;
+                    right: 5%;
+                }
+            }
+
+        </style>
+        <a href="#" class="popup__close">
+            <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M47 23.2301C47 37.0488 35.7932 47 22.3299 47C8.8665 47 0 32.0446 0 18.2258C0 4.40713 13.749 -1.34058 25.7427 0.260774C37.7365 1.86213 47 8.56776 47 23.2301Z" fill="#F3EEAA"/>
+            </svg>
+        </a>
+
+    </div>
+
+
+    <div class='absolute unavailable-hero-div'>
+        {% include 'snippets/image.twig' with { 'image': options.unavailable_lifestyle_image, 'size': '1536x1536' } %}
+    </div>
+</div>

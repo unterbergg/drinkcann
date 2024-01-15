@@ -1,0 +1,49 @@
+<div
+    class='relative mr-2 '
+    data-id="{{ product.grassdoor_product_id }}"
+    data-is-bundle="{{ product.grassdoor_product_is_bundle }}"
+    data-js-grassdoor-product
+>
+    {% if product.badge %}
+    <div class='absolute top-30px left-0 rounded-2xl has-shadow uppercase text-12px tracking-1px py-2 px-4 z-10' style='color: {{ product.badge_text_color }}; background-color: {{ product.badge_background_color|default('#faf6f9') }};'>
+        {{ product.badge }}
+    </div>
+    {% endif %}
+    <a href='{{ function('get_permalink', product.ID) }}' class='w-full relative mb-6 pt-150p block card'>
+        {% include 'snippets/image.twig' with { 'image': product.card_image, 'size': '1536x1536', 'class': 'absolute inset-0 w-full h-full object-contain transition duration-300' } %}
+        {% if product.card_image_hover %}
+            {% include 'snippets/image.twig' with { 'image': product.card_image_hover, 'size': '1536x1536', 'class': 'absolute inset-0 w-full h-full object-contain transition duration-300 card-bg-hover' } %}
+        {% endif %}
+    </a>
+    <div class='    text-center mb-6'>
+        <div class='h4 uppercase mb-2'>{{ product.title }}</div>
+        <div class='h6 uppercase'>{% if product.size %}{{ product.size }} &middot;
+            {% endif %}<span data-js-grassdoor-product-price>{{ product.price }}</span></div>
+    </div>
+    <div class='flex justify-center' data-js-grassdoor-product-form>
+        {% include 'snippets/button.twig' with {
+            class: 'card-button',
+            'is_button': false,
+            'text_wrapper_js': 'data-js-grassdoor-product-cta-text',
+            'data_js':'data-js-grassdoor-product-cta',
+            'id': product.grassdoor_product_id,
+            'is_bundle': product.grassdoor_product_is_bundle,
+            'bg_color': section.text_color|default('#09A0BE'),
+            'text_color': cta_color,
+            'link': {
+                'title': 'SHOP NOW',
+                'url': function('get_permalink', product.ID) },
+            'bg_color_class' : 'card-button'
+        } %}
+    </div>
+    {#<div class='flex justify-center'>
+        {% include 'snippets/button.twig' with {
+            'bg_color': section.text_color|default('#09A0BE'),
+            'text_color': cta_color,
+            'link': {
+                'url': function('get_permalink', product.ID),
+                'title': 'Shop now'
+            },
+        } %}
+    </div>#}
+</div>

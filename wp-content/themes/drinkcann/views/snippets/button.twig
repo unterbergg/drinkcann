@@ -1,0 +1,112 @@
+{% set id = id|default(random(9999999)) %}
+
+<style>
+    {% if bg_color_class != "" and bg_color_class != NULL %}
+    .{{ bg_color_class }}__{{ id }}.button {
+        background-color: {{ bg_color|default('#09A0BE') }};
+        border-color: {{ bg_color|default('#09A0BE') }};
+        color: {{ text_color|default('#EFE4EC') }};
+    }
+    .{{ bg_color_class }}__{{ id }}.button .icon-arrow {
+        fill: {{ text_color|default('#EFE4EC') }};
+    }
+    .{{ bg_color_class }}__{{ id }}.button:not(.no-hover):hover {
+        background-color: {{ text_color|default('#EFE4EC') }};
+        color: {{ bg_color|default('#09A0BE') }};
+    }
+    .{{ bg_color_class }}__{{ id }}.button .icon-arrow-container {
+        background-color: {{ bg_color|default('#09A0BE') }};
+    }
+    {% else %}
+    .button {
+        background-color: {{ bg_color|default('#09A0BE') }};
+        border-color: {{ bg_color|default('#09A0BE') }};
+        color: {{ text_color|default('#EFE4EC') }};
+    }
+    .button .icon-arrow {
+        fill: {{ text_color|default('#EFE4EC') }};
+    }
+    .button:not(.no-hover):hover {
+        background-color: {{ text_color|default('#EFE4EC') }};
+        color: {{ bg_color|default('#09A0BE') }};
+    }
+    .button .icon-arrow-container {
+        background-color: {{ bg_color|default('#09A0BE') }};
+    }
+    {% endif %}
+</style>
+{% if is_button %}
+
+    <button
+      type='submit'
+      class='
+        {{ class }}
+        {{ bg_color_class }}__{{ id }}
+        rounded-full
+        overflow-hidden
+        inline-block
+        tracking-0_04em
+        text-32px
+        font-gotham-condensed
+        uppercase
+        leading-none
+        font-bold
+        whitespace-nowrap
+        button
+        border-2
+      '
+      data-id='{{ id }}'
+      data-is-bundle='{{ is_bundle }}'
+      data-link='{{ link.url }}'
+      {{ data_attribute }}
+      {{data_js}}
+    >
+{% else %}
+    <a
+      href='{{ link.url }}'
+      class='
+        {{ class }}
+        {{ bg_color_class }}__{{ id }}
+        rounded-full
+        overflow-hidden
+        inline-block
+        tracking-0_04em
+        text-32px
+        font-gotham-condensed
+        uppercase
+        leading-none
+        font-bold
+        whitespace-nowrap
+        button
+        border-2
+      '
+      data-id='{{ id }}'
+      data-is-bundle='{{ is_bundle }}'
+      data-link='{{ link.url }}'
+      {{ data_attribute }}
+      {{data_js}}
+    >
+{% endif %}
+
+    <span class='flex items-center w-full'>
+        <span class='flex-auto pl-[24px] pr-[16px]' {{ text_wrapper_js }}>{{ link.title }}</span>
+        <span class='flex items-center justify-center h-full p-6 icon-arrow-container rounded-full'>
+            <span class='w-4 inline-block'>
+                <svg viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class='icon-arrow' d="M1 6.99902C0.447715 6.99902 0 7.44674 0 7.99902C0 8.55131 0.447715 8.99902 1 8.99902V6.99902ZM17.7071 8.70613C18.0976 8.31561 18.0976 7.68244 17.7071 7.29192L11.3431 0.927956C10.9526 0.537431 10.3195 0.537431 9.92893 0.927956C9.53841 1.31848 9.53841 1.95164 9.92893 2.34217L15.5858 7.99902L9.92893 13.6559C9.53841 14.0464 9.53841 14.6796 9.92893 15.0701C10.3195 15.4606 10.9526 15.4606 11.3431 15.0701L17.7071 8.70613ZM1 8.99902H17V6.99902H1V8.99902Z" />
+                </svg>
+            </span>
+        </span>
+    </span>
+{#    <script>#}
+{#        $(document).on('click','.flex.items-center.w-full',function () {#}
+{#            document.cookie = 'agePopup=; Max-Age=0'#}
+{#        });#}
+{#    </script>#}
+
+
+{% if is_button %}
+    </button>
+{% else %}
+    </a>
+{% endif %}

@@ -1,0 +1,111 @@
+{% block html_head %}
+	{% include 'html-header.twig' %}
+	{% block head %}
+	{% endblock %}
+	</head>
+{% endblock %}
+
+<style>
+	body {
+		margin: 0;
+	}
+
+	.preloader {
+		position: fixed;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		overflow: hidden;
+		/* фоновый цвет */
+		background: #e0e0e0;
+		z-index: 1001;
+	}
+
+	.preloader__image {
+		position: relative;
+		top: 50%;
+		left: 50%;
+		width: 70px;
+		height: 70px;
+		margin-top: -35px;
+		margin-left: -35px;
+		text-align: center;
+		animation: preloader-rotate 2s infinite linear;
+	}
+
+	@keyframes preloader-rotate {
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	.loaded_hiding .preloader {
+		transition: 0.3s opacity;
+		opacity: 0;
+	}
+
+	.loaded .preloader {
+		display: none;
+	}
+</style>
+
+<body class="{{body_class}}" data-template="base.twig">
+
+		<header class="fixed top-0 left-0 right-0 z-50 block site-header" style="background-color: {{ post.plp_bg ? post.megamenu_bg_color_desktop : '' }}">
+			{% block header %}
+				{% include 'snippets/nav.twig' %}
+			{% endblock %}
+			{% if post.taxonomy == 'canncat' %}
+				{% include 'snippets/categories-bar.twig' with { 'section': post.meta('categories'), 'shop': shop } %}
+			{% endif %}
+		</header>
+
+		<pixel-component class='absolute w-1 h-1 top-200px'></pixel-component>
+
+		{% include 'snippets/mm.twig' with { 'color': post.primary_menu_text_color } %}
+
+		{# megamenu overlay #}
+		<div class='fixed top-0 left-0 right-0 z-30 w-full h-screen bg-overlay megamenu-overlay js-megamenu-overlay'></div>
+
+		{# gate + overlay #}
+		{% if post.link ends with 'find-a-cann-ca/' or post.link ends with 'terms-conditions/' or post.link ends with 'privacy-policy/'%}
+		{% else %}
+			<div class='fixed top-0 left-0 right-0 z-40 w-full h-screen bg-overlay gate-overlay js-gate-overlay'></div>
+			{% include 'snippets/gate.twig' %}
+		{% endif %}
+
+		<main role="main" class="site-main min-h-screen overflow-hidden">
+			<div class="wrapper {{sidebar_class}}">
+				{% block content %}
+					Sorry, no content
+				{% endblock %}
+			</div>
+		</main>
+
+		<footer class="site-footer">
+			{% block footer %}
+				<div class="wrapper">
+					{% include 'footer.twig' %}
+				</div>
+			{% endblock %}
+		</footer>
+		{{ function('wp_footer') }}
+	
+	<!-- Start of shopdrinkcann Zendesk Widget script -->
+	<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=2efc3a69-aeb5-4f1e-adb1-2dd0b5c4c4ec"> </script>
+	<!-- End of shopdrinkcann Zendesk Widget script -->
+
+{#	<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id={{ options.klaviyo_site_id }}"></script>#}
+
+		<script>
+			!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="eYrBkXidynmJk5UE7vgbPlswqafuFApf";;analytics.SNIPPET_VERSION="4.15.3";
+				analytics.load("eYrBkXidynmJk5UE7vgbPlswqafuFApf");
+				analytics.page();
+			}}();
+		</script>
+
+		<script>(function () {Grin = window.Grin || (window.Grin = []);var s = document.createElement('script');s.type = 'text/javascript';s.async = true;s.src = 'https://d38xvr37kwwhcm.cloudfront.net/js/grin-sdk.js';var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);})();</script>
+	
+	</body>
+</html>

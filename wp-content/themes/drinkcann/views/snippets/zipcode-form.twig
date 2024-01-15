@@ -1,0 +1,53 @@
+<style>
+.tou-pp {
+	font-style: normal;
+	font-weight: 325;
+	font-size: 12px;
+	line-height: 14px;
+	letter-spacing: 1px;
+	text-transform: lowercase;
+}
+.hero-div {
+	width: 375px;
+	bottom: -780px;
+	right: 63px;
+}
+@media (min-width:1024px) {
+.hero-div {
+	width: 538px;
+	bottom: -900px;
+	right: 600px;
+}
+}
+</style>
+
+<div class="zipcode-popup" data-js-zip-code-modal>
+
+	<div class='absolute inset-0 w-screen h-full px-[24px] py-[85px] transform -translate-x-1/2 sm:w-full lg:pt-[48px] lg:pr-[94px] lg:pb-[106px] lg:pl-[94px] lg:left-auto lg:transform-none left-1/2 lg:translate-x-0'>
+		<form class='text-center' data-js-grassdoor-zip-code-form>
+			<div class='hidden w-20 mx-auto mb-20 lg:block'>
+				{% include 'snippets/logo.twig' %}
+			</div>
+
+			<div class='max-w-xs mx-auto mb-4 uppercase h4 lg:mb-[16px] lg:max-w-none'>
+				{{ options.gate_heading }}
+			</div>
+
+			<div class='mb-4' data-js-grassdoor-zip-code-form-submit>
+				{% include 'snippets/button.twig' with { 'bg_color': options.gate_text_color, 'text_color': options.gate_background_color, 'link': { 'title': "Yes, I'm at least 21" }, 'is_button': true, 'class':'zipcode-form-button', 'bg_color_class' : 'zipcode-form-button' } %}
+			</div>
+
+			<div class='tou-pp mb-20'> {{ options.gate_terms }} </div>
+
+			<a href='{{ options.gate_secondary_cta.url }}' class='uppercase eyebrow1 text-teal' target="{% if options.gate_secondary_cta['target'] %}{{ options.gate_secondary_cta['target'] }}{% else %}_self{% endif %}">{{ options.gate_secondary_cta.title }}</a>
+
+		</form>
+
+	</div>
+
+
+	<div class='absolute hero-div'>
+		{% include 'snippets/image.twig' with { 'image': options.gate_lifestyle_image, 'size': '1536x1536' } %}
+	</div>
+
+</div>

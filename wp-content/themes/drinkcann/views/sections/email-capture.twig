@@ -1,0 +1,69 @@
+{% if section.is_visible %}
+    <section class=' pt-16 pb-44 relative' style='color: {{ section.color_primary }}; background-color: {{ section.color_secondary }}'>
+
+        <div class='absolute top-px left-0 right-0 transform -translate-y-full'>
+            <svg class='w-full' viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M719 24.7418C912.5 61.8206 1233 107.519 1440 8.14117V92H0V47.0174C173.5 -12.9909 538 -9.94165 719 24.7418Z" fill="{{ section.color_secondary }}" />
+            </svg>
+        </div>
+
+        <div class='absolute inset-0 w-full h-full overflow-hidden'>
+            {% include 'snippets/bubbles.twig' %}
+        </div>
+    
+
+        <div class='container mx-auto px-4 relative z-10 flex justify-center'>
+            <div class='text-center inline-block mx-auto max-w-full'>
+
+                <h4 class='h4 mb-3 uppercase'>{{ section.heading }}</h4>
+                <div class='body2 mb-10'>
+                    <p>{{ section.description }}</p>
+                </div>
+
+            
+                    <data-capture-component>
+                        <form>
+
+                            <input type="hidden" name="g" value="{{ section.klaviyo_list_id }}">
+
+                            {% if 'email' in section.input_type %}                
+                                <div class='text-[75px] lg:text-[116px] mt-4 leading-none'>
+                                    <input type='email' autocomplete="email" name='email' id='k_id_email' placeholder='{{ section.email_field_placeholder }}' class='text-center uppercase bg-transparent font-gotham-condensed font-bold leading-none placeholder-crimson max-w-full' required />
+                                </div>                                        
+                            {% endif %}
+
+                            {% if 'phone' in section.input_type %}
+                                <div class='text-[75px] lg:text-[116px] mt-4 leading-none'>
+                                    <input type='tel' autocomplete="off" name='phone_number' pattern="[0-9]{10}" class='text-center uppercase bg-transparent font-gotham-condensed font-bold leading-none placeholder-crimson max-w-full' placeholder='{{ section.phone_number_field_placeholder }}' required />
+                                </div>
+                            {% endif %}
+
+                            <div class='body2 mt-2'>
+                                <input type="checkbox" id="consent-section" name="consent" value="true" required>
+                                <label for="consent-section">{{ section.consent_message }}</label>
+                            </div>
+
+                            <div class='mt-10'>
+                                {% include 'snippets/button.twig' with { 'is_button': true, 'bg_color': section.color_primary, 'text_color': section.color_secondary, 'link': { 'title': section.cta_label }, 'class':'email-capture-button', 'bg_color_class' : 'email-capture-button' } %}
+                            </div>
+
+                            <div class='message-container flex items-center justify-center'>
+                                <div class='mt-10 h4 uppercase'>
+                                    <div class='success_message'>{{ section.form_success_message }}</div>
+                                    <div class='error_message'>{{ section.form_error_message }}</div>
+                                    <div class='error_message-custom js-error-message'></div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </data-capture-component>
+
+            </div>
+        </div>
+
+        <div class='absolute right-0 -bottom-200px z-50 hidden lg:block'>
+            {% include 'snippets/image.twig' with { 'image': section.lifestyle_product_image } %}
+        </div>
+
+    </section>
+{% endif %}

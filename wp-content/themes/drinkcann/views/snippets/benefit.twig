@@ -1,0 +1,51 @@
+{% if highlight.link %}
+<div class='text-center pb-8 lg:pb-20' style='position: relative;'>
+{% else %}
+<div class='text-center' style='position: relative;'>
+{% endif %}
+    <div class='highlight-w-199px lg:w-full mx-auto'>
+        {% if highlight.link %}
+        <a href='{{ highlight.link.url }}'>
+        {% endif %}
+            <div class='mb-4 lg:mb-16 relative overflow-hidden rounded-full w-full pt-100p card highlight-mb-pt150p'> 
+                {% include 'snippets/image.twig' with { 'image': highlight.image, 'size': '1536x1536', 'fill': 'image-fill' } %}   
+                {% if highlight.mobileimage %}
+                    {% include 'snippets/image.twig' with { 'image': highlight.mobileimage, 'size': '1536x1536', 'fill': 'image-fill', 'class': 'highlight-mb-hiddenimg' } %}
+                {% endif %}
+                {% if highlight.hoverimage %}
+                    {% include 'snippets/image.twig' with { 'image': highlight.hoverimage, 'size': '1536x1536', 'fill': 'image-fill' , 'class': 'card-bg-hover' } %}
+                {% endif %}
+                {% if highlight.icon %}
+                <div class='absolute inset-0 w-full h-full bg-mauve bg-opacity-50 z-10'></div>
+
+                <div class='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10'>
+                    {% include 'snippets/image.twig' with { 'image': highlight.icon, 'size': '1536x1536' } %}
+                </div>
+                {% endif %}
+            </div>
+        {% if highlight.link %}
+        </a>
+        {% endif %}
+    </div>
+    <div>
+        <div class='mb-2 uppercase font-gotham-condensed font-medium text-56px lg:text-56px leading-none px-4 lg:px-0'>
+            {{ highlight.heading }}
+        </div>
+        <div class='mb-4 text-20px lg:body1 lg:w-2/3 mx-auto w-full px-4 lg:px-0'>
+            {{ highlight.description }}
+        </div>
+        {% if highlight.link %}
+            <div class='highlight-buttom-div highlight-buttom-div-lg'>
+            {% include 'snippets/find-a-cann-button.twig' with { 
+                class: 'cart-button',
+                'is_button': false, 
+                'text_wrapper_js': 'data-js-grassdoor-product-cta-text', 
+                'data_js':'data-js-grassdoor-product-cta',
+                'is_bundle': 0, 
+                'bg_color': section.text_color|default('#09A0BE'), 
+                'text_color': section.background_color,
+                'link': { 'title': 'SHOP NOW', 'url': highlight.link.url } } %}
+            </div>
+        {% endif %}
+    </div>
+</div>

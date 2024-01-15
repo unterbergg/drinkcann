@@ -1,0 +1,36 @@
+<style>
+    .categories-bar {
+        background-color: {{ post.plp_bg ? post.plp_bg : post.megamenu_bg_color_mobile|default('#EFE4EC') }};
+        border-color: {{ post.primary_menu_text_color }};
+        color: {{ post.primary_menu_text_color }};
+    }
+
+    @media (min-width: 1024px) {
+        .categories-bar {
+            background-color: {{ post.plp_bg ? post.plp_bg : post.megamenu_bg_color_desktop|default('#EFE4EC') }};
+        }
+    }
+
+    .category-nav a img {
+        max-width: 86px;
+    }
+</style>
+<div class='border-t border-b eyebrow1 uppercase left-0 right-0 w-full z-30 categories-bar overflow-hidden'>
+    <ul class='flex lg:justify-center overflow-x-scroll hide-scrollbar js-category-nav-container category-nav-container'>
+
+        {% for block in canncat %}
+            {% if block.cat_multuple != true %}
+            <li class='py-2 px-7 js-category-nav category-nav relative whitespace-nowrap {% if block.ID == post.ID %} active {% endif %}'
+                data-id='{{ block.name|sanitize }}'>
+                <a href='{{ function('get_term_link', block) }}' class="flex flex-col items-center">
+                    {{ function('wp_get_attachment_image', block.canncat_image, 'medium', false, {'class':'h-[120px]'}) }}
+                    <span class="mt-10px relative">
+                        {{ block.name }}
+                    </span>
+                </a>
+            </li>
+            {% endif %}
+        {% endfor %}
+
+    </ul>
+</div>

@@ -1,0 +1,181 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<article
+  class="
+    pt-[40px]
+    lg:pt-[132px]
+    px-[24px]
+    pb-[24px]
+  "
+  style="
+    background-color: {{ post.color_secondary }}
+  "
+>
+  <div
+    class="
+      relative
+      flex
+      flex-col
+      items-center
+      mt-[36px]
+      md:mt-[68px]
+      mx-auto
+      pb-[80px]
+      md:pb-[208px]
+      w-full
+      max-w-[880px]
+    "
+  >
+    
+	
+	<div
+		class="
+		eyebrow2
+		flex
+		items-center
+		mb-[24px]
+		md:mb-[28px]
+		px-[15px]
+		h-[32px]
+		text-center
+		border-[1px]
+		border-solid
+		rounded-[16px]
+		uppercase
+		"
+		style="color: {{ post.color_primary }};"
+	>
+		{{ post.terms[0].name }}
+	</div>
+	
+
+    <h1
+      class="
+        h2
+        text-center
+		uppercase
+      "
+      style="
+        color: {{ post.color_primary }};
+      "
+    >
+      {{ post.title }}
+    </h1>
+    <div
+      class="
+        cta
+        mt-[36px]
+        md:mt-[40px]
+        mx-auto
+        uppercase
+      "
+      style="
+        color: {{ post.color_primary }};
+      "
+    >
+      by {{ post.author }}
+    </div>
+    <div
+      class="
+        relative
+        mt-[64px]
+        md:mt-[84px]
+        w-full
+        rounded-[4px]
+        overflow-hidden
+      "
+    >
+		{% include 'snippets/image.twig' with { 'image': post.thumbnail, 'size': '2048x2048', 'fill': 'mx-auto' } %}
+    </div>
+    <div
+      class="
+        article
+        mt-[64px]
+        md:mt-[84px]
+        w-full
+        max-w-[700px]
+      "
+      style="
+        color: {{ post.color_primary }};
+      "
+    >
+      {{ post.content }}
+    </div>
+    <div
+      class="
+        xl:absolute
+        xl:top-0
+        xl:bottom-0
+        xl:left-[-174px]
+        xl:pb-[208px]
+      "
+    >
+    <div
+      class="
+        xl:sticky
+        xl:top-[132px]
+        grid
+        grid-cols-2
+        xl:grid-cols-1
+        gap-[20px]
+        mt-[64px]
+        md:mt-[84px]
+        xl:mt-0
+      "
+    >
+	
+      <a
+        class="
+          flex
+          justify-center
+          items-center
+          w-[44px]
+          h-[44px]
+          border-[1px]
+          border-solid
+          rounded-[22px]
+        "
+        href="https://twitter.com/intent/tweet?url={{ post.link | escape }}"
+        aria-label="Share on Twitter"
+        target="_blank"
+        style="
+          border-color: {{ post.color_primary }};
+        "
+      >
+		<svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M20.2132 2.00329C19.4904 2.31879 18.7137 2.53202 17.8985 2.62794C18.7307 2.13698 19.3696 1.35952 19.6705 0.433188C18.8794 0.895286 18.0139 1.22086 17.1114 1.39585C16.3763 0.62489 15.329 0.143066 14.1698 0.143066C11.9442 0.143066 10.1398 1.91929 10.1398 4.11005C10.1398 4.42101 10.1754 4.72375 10.2441 5.01417C6.89485 4.84868 3.92541 3.26937 1.93772 0.869238C1.5909 1.45515 1.39217 2.13668 1.39217 2.86361C1.39217 4.23996 2.10368 5.45415 3.18496 6.16559C2.54499 6.14586 1.91911 5.97571 1.35956 5.66934C1.35933 5.68596 1.35933 5.70258 1.35933 5.71927C1.35933 7.64135 2.74844 9.24476 4.59196 9.60921C3.99852 9.76808 3.37604 9.79134 2.77208 9.67719C3.28486 11.2533 4.77319 12.4001 6.5366 12.4322C5.15738 13.4962 3.41968 14.1304 1.53166 14.1304C1.20633 14.1304 0.885596 14.1116 0.570312 14.075C2.35375 15.2006 4.47203 15.8574 6.74784 15.8574C14.1605 15.8574 18.2139 9.81239 18.2139 4.57012C18.2139 4.39805 18.2101 4.22697 18.2022 4.05687C18.9912 3.49542 19.6722 2.80002 20.2132 2.00329Z" fill="{{ post.color_primary }}"/>
+		</svg>
+      </a>
+      <a
+        class="
+          flex
+          justify-center
+          items-center
+          w-[44px]
+          h-[44px]
+          border-[1px]
+          border-solid
+          rounded-[22px]
+        "
+        href="https://www.facebook.com/sharer/sharer.php?u={{ post.link | escape }}"
+        aria-label="Share on Facebook"
+        target="_blank"
+        style="
+          border-color: {{ post.color_primary }};
+        "
+      >
+		<svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M5.36724 15.8574V8.68934H7.7733L8.13352 5.89587H5.36724V4.11227C5.36724 3.30348 5.59189 2.7523 6.75172 2.7523L8.23099 2.75165V0.253185C7.97503 0.21913 7.09697 0.143066 6.07546 0.143066C3.94263 0.143066 2.48252 1.4449 2.48252 3.83571V5.89587H0.0703125V8.68934H2.48252V15.8574H5.36724Z" fill="{{ post.color_primary }}"/>
+		</svg>
+
+      </a>
+    </div>
+  </div>
+</article>
+
+{% include 'snippets/article-featured-product.twig' %}
+{% include 'snippets/article-related-articles.twig' %}
+
+{% endblock %}

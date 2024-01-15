@@ -1,0 +1,52 @@
+{% set colors = post.meta('articles').colors %}
+
+<section
+  class="
+    relative
+    pt-[64px]
+    md:pt-[120px]
+    pb-[64px]
+  "
+  style="
+    background-color: {{ colors.color_secondary }}
+  "
+>
+
+  {% if post.meta('articles').is_divider_active %}
+    <div class="absolute top-px left-0 right-0 transform -translate-y-full">
+        <svg class="w-full" viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M721 28.3988C527.5 70.958 207 123.411 0 9.34447V92H1440V53.9669C1266.5 -14.911 902 -11.4111 721 28.3988Z" fill="{{ colors.color_secondary }}"></path>
+        </svg>
+    </div>
+  {% endif %}
+  
+    <ul
+      class="
+        grid
+        grid-cols-1
+        sm:grid-cols-2
+        lg:grid-cols-3
+        gap-x-[52px]
+        lg:gap-x-[60px]
+        gap-y-[52px]
+        lg:gap-y-[86px]
+        mx-auto
+        px-[40px]
+        pb-[72px]
+        md:pb-[128px]
+        w-full
+        max-w-[1288px]
+      "
+    >
+
+      {% for article in posts %}
+          {% include 'snippets/blog-list-item.twig' with { blog_item: article, color_primary: colors.color_primary, color_secondary: colors.color_secondary  } %}
+      {% endfor %}
+
+    </ul>
+
+    {% if pagination %}
+    {% include 'snippets/pagination.twig' %}
+    {% endif %}
+  
+</section>

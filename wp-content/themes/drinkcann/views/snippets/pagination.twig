@@ -1,0 +1,124 @@
+<div
+  class="
+    px-[20px]
+    py-[20px]
+    w-full
+    border-t-[1px]
+    border-b-[1px]
+    border-solid
+  "
+  style="
+    color: {{ colors.color_primary }};
+  "
+>
+  <ul
+    class="
+      flex
+      justify-between
+      items-center
+      mx-auto
+      w-full
+      max-w-[1208px]
+    "
+  >
+    <li
+      class="
+        w-[20px]
+        h-[20px]
+      "
+    >
+
+
+      {% if pagination.prev %}
+        <a
+          href="{{ pagination.prev.link }}"
+          class="
+            flex
+            justify-center
+            items-center
+            w-[20px]
+            h-[20px]
+          "
+          style="
+            transform: scaleX(-1);
+          "
+          aria-label="previous page"
+        >
+          {% include 'icons/icon-arrow-alt.twig' with { 'color': colors.color_primary } %}
+        </a>
+      {% endif %}
+    </li>
+    <li>
+      <ul
+        class="
+          eyebrow1
+          flex
+          flex-wrap
+          justify-center
+          px-[20px]
+        "
+      >
+        {% for page in pagination.pages %}
+            {% if page.current == 'true' %}
+
+                <li
+                    class="
+                        flex
+                        justify-center
+                        items-center
+                        w-[22px]
+                        h-[22px]
+                        border-[1px]
+                        border-solid
+                        rounded-full
+                    "
+                    >
+                    {{ page.title }}
+                </li>
+
+            {% else %}
+
+                <li>
+                    <a
+                    class="
+                        flex
+                        justify-center
+                        items-center
+                        w-[22px]
+                        h-[22px]
+                    "
+                    href="{{ page.link }}"
+                    >
+                    {{ page.title }}
+                    </a>
+                </li>
+
+            {% endif %}
+        {% endfor %}
+
+      </ul>
+    </li>
+    <li
+      class="
+        w-[20px]
+        h-[20px]
+      "
+    >
+      {% if pagination.next %}
+        <a
+          href="{{ pagination.next.link }}"
+          class="
+            flex
+            justify-center
+            items-center
+            w-[20px]
+            h-[20px]
+          "
+          aria-label="next page"
+        >
+          {% include 'icons/icon-arrow-alt.twig' with { 'color': colors.color_primary } %}
+        </a>
+      {% endif %}
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,46 @@
+<div class='{{ width }} text-center relative flex items-center justify-center'>
+
+    <div class='w-full pt-100p'>
+        <div class='rounded-full border border-purple absolute inset-0 w-full h-full'></div>
+    </div>
+
+
+    {% if review.lifestyle_image %}
+        <div class='absolute {{ thumbnail_pos }} w-2/5'>
+            <div class='w-full pt-100p'>
+                <div class='rounded-full absolute inset-0 w-full h-full overflow-hidden'>
+                    {% include 'snippets/image.twig' with { 'image': review.lifestyle_image, 'size': '1536x1536', 'fill': 'image-fill' } %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2/3 uppercase h6 text-purple'>
+
+        {% if review.include_quotes_icon %}
+            <div class='lg:mb-2 w-4 lg:w-8 mx-auto'>
+                {% include 'icons/icon-quotes.twig' %}
+            </div>
+        {% endif %}
+
+        <div class='mb-2 lg:mb-4 {{ class }}'>
+            <p class="">{{ review.content }}</p>
+        </div>
+        <div>
+        {% if review.citation_type == 'image' %}
+            <div class='flex justify-center'>
+                {% include 'snippets/image.twig' with { 'image': review.citation_image, 'size': '1536x1536' } %}
+            </div>
+        {% else %}
+            {% if review.include_stars %}
+                <div class='mb-3 lg:mb-5 flex justify-center'>
+                    <div class='w-20 lg:w-24'>
+                        {% include 'icons/icon-stars.twig' %}
+                    </div>
+                </div>
+            {% endif %}
+            <div class='tracking-1px text-10px uppercase lg:eyebrow1 leading-none'>{{ review.citation_text }}</div>
+        {% endif %}
+        </div>
+    </div>
+</div>

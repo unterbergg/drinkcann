@@ -1,0 +1,91 @@
+{% set color = section.text_color|trim('#', 'left')|upper %}
+
+<style>
+    [data-id='{{ section.acf_fc_layout }}-{{ loop.index0 }}'] .has-underline u:after {
+        background-image: url("data:image/svg+xml,<svg width='52' height='10' viewBox='0 0 52 10' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M26.3456 5.5155C19.8495 0.496856 10.2374 1.20194 0 6.47465V4.4622C10.5562 -0.974704 20.1801 -1.77683 27.5464 3.91414C30.8728 6.48396 34.3418 7.8579 38.203 7.97617C42.0826 8.09501 46.8952 7.09206 52 4.46288V6.47534C46.708 9.20097 42.4583 10.1199 38.1432 9.98771C33.8097 9.85497 29.9504 8.30049 26.3456 5.5155Z' fill='{{ section.text_color | url_encode }}'/></svg>");
+    }
+    [data-id="{{ section.acf_fc_layout }}-{{ loop.index0 }}"] .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+        background-color: rgb({% for color in section.pagination_bar_color %}{{ color }}{% if loop.last %}{% else %},{% endif %}{% endfor %});
+    }
+    [data-id="{{ section.acf_fc_layout }}-{{ loop.index0 }}"] .swiper-pagination-progressbar {
+        background-color: rgba({% for color in section.pagination_bar_color|slice(0,3) %}{{ color }},{% endfor %}0.25);
+    }
+</style>
+
+<div class='pt-16 pb-24 lg:pt-32 lg:pb-40 relative' data-section='collections-grid' style='color: {{ section.text_color }}; background-color: {{ section.background_color }}' data-id='{{ section.acf_fc_layout }}-{{ loop.index0 }}'>
+
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full flip'>
+        <svg class='w-full' viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M719 24.7418C912.5 61.8206 1233 107.519 1440 8.14117V92H0V47.0174C173.5 -12.9909 538 -9.94165 719 24.7418Z" fill="{{ section.background_color }}" />
+        </svg>
+    </div>
+
+    <div class='overflow-hidden absolute inset-0 w-full h-full'>
+
+        <div class='absolute right-100px top-60px w-16 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute -left-50px top-100px w-48 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute left-100px top-350px w-8 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute lg:-left-25px bottom-200px w-16 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute lg:-right-100px bottom-300px w-40 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+    </div>
+
+    <div class='hidden md:block relative z-20'>
+
+        <div class='container mx-auto px-4'>
+
+            <div class='w-full lg:w-3/4 mx-auto text-center h2 uppercase lg:mb-24 mb-16 has-underline'>
+                {{ section.heading }}
+            </div>
+
+            <div class='grid md:grid-cols-2 gap-12'>
+
+                {% for item in section.items %}
+                    {% include 'snippets/wide-card.twig' with { 'item': item } %}
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class='overflow-hidden md:hidden'>
+        <div class='container mx-auto px-4'>
+            <carousel-component data-id='{{ section.acf_fc_layout }}-{{ loop.index0 }}' data-number='1.05'>
+                <div class='flex justify-center w-full mb-10'>
+                    <div>
+                        <h2 class='h2 uppercase text-left' style='color: {{ section.text_color }}'>{{ section.heading }}</h2>
+                    </div>
+                </div>
+
+                <!-- Slider main container -->
+                <div class="swiper lg:pb-20 pb-12">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        {% for item in section.items %}
+                            <div class="swiper-slide relative" style='color: {{ section.text_color }}'>
+                             {% include 'snippets/wide-card.twig' with { 'item': item } %}
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="swiper-pagination lg:hidden"></div>
+                </div>
+            </carousel-component>
+        </div>
+    </div>
+</div>

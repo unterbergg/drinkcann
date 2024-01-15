@@ -1,0 +1,131 @@
+{% set color = section.text_color|trim('#', 'left')|upper %}
+
+<style>
+    [data-id='{{ section.acf_fc_layout }}-{{ loop.index0 }}'] .has-underline u:after {
+        background-image: url("data:image/svg+xml,<svg width='52' height='10' viewBox='0 0 52 10' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M26.3456 5.5155C19.8495 0.496856 10.2374 1.20194 0 6.47465V4.4622C10.5562 -0.974704 20.1801 -1.77683 27.5464 3.91414C30.8728 6.48396 34.3418 7.8579 38.203 7.97617C42.0826 8.09501 46.8952 7.09206 52 4.46288V6.47534C46.708 9.20097 42.4583 10.1199 38.1432 9.98771C33.8097 9.85497 29.9504 8.30049 26.3456 5.5155Z' fill='{{ section.text_color | url_encode }}'/></svg>");
+    }
+</style>
+
+<div class='pt-16 pb-24 lg:pt-32 lg:pb-[200px] relative' data-section='highlights' style='color: {{ section.text_color }}; background-color: {{ section.background_color }}' data-id='{{ section.acf_fc_layout }}-{{ loop.index0 }}'>
+
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full flip'>
+        <svg class='w-full' viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M719 24.7418C912.5 61.8206 1233 107.519 1440 8.14117V92H0V47.0174C173.5 -12.9909 538 -9.94165 719 24.7418Z" fill="{{ section.background_color }}" />
+        </svg>
+    </div>
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full'>
+        {% if section.learn_page_image %}
+            <div class='
+                absolute
+                top-[-195px]
+                md:top-[-345px]
+                right-2/4
+                rotate-15
+                transform
+                w-[168px]
+                md:w-[278px]
+                h-[277px]
+                md:h-[458px]
+                z-9
+                md:translate-x-3/4
+                translate-x-1/2
+                '
+            >
+                {% include 'snippets/image.twig' with { 'image': section.learn_page_image, class: 'filter-shadow object-center object-cover block w-full h-full' } %}
+            </div>
+        {% endif %}
+    </div>
+
+    {% if section.decor %}
+    <div class='overflow-hidden absolute inset-0 w-full h-full'>
+
+        <div class='absolute right-100px top-60px w-16 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute -left-50px top-100px w-48 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute left-100px top-350px w-8 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute lg:-left-25px bottom-200px w-16 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute lg:-right-100px bottom-300px w-40 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class='relative pb-8 z-20 overflow-hidden'>
+
+        <div class='container mx-auto px-4'>
+
+            <div class='w-full lg:w-3/4 mx-auto text-center h1 uppercase lg:mb-24 mb-12 has-underline'>
+                {{ section.heading }}
+            </div>
+
+            <div
+                class='
+                    relative
+                    grid
+                    lg:grid-cols-3
+                    gap-12
+                '
+            >
+
+                {% for highlight in section.highlight_items %}
+                    {% include 'snippets/benefit.twig' with { 'highlight': highlight } %}
+                {% endfor %}
+
+                {% if section.image and fn('get_page_template_slug') != 'learn.php'%}
+                    <div
+                        class='
+                                absolute
+                                z-25
+                                top-[-240px]
+                                design:top-[-200px]
+                                right-[-130px]
+                                design:right-[-110px]
+                                transform
+                                rotate-12
+                                lg:w-auto
+                                w-[195px]
+                                h-[372px]
+                                lg:block
+                                hidden
+                        '
+                    >
+                        {% include 'snippets/image.twig' with { 'image': section.image, class: 'filter-shadow object-center object-cover block w-full h-full' } %}
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+    {% if section.image and fn('get_page_template_slug') == 'learn.php' %}
+        <div
+            class='
+                absolute
+                z-25
+                lg:left-[-100px]
+                left-[-50px]
+                lg:bottom-[-176px]
+                bottom-[-108px]
+                lg:w-[270px]
+                lg:h-[447px]
+                w-[163px]
+                h-[271px]
+                transform
+                rotate-[-14.19deg]
+            '
+        >
+            {% include 'snippets/image.twig' with { 'image': section.image, class: 'filter-shadow object-center object-cover block w-full h-full' } %}
+        </div>
+    {% endif %}
+</div>

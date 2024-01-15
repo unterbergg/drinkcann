@@ -1,0 +1,18 @@
+<div class='w-105 hidden lg:flex items-center absolute bottom-55px right-55px p-4 rounded-40px gap-4 z-10 has-shadow--alt' style='background-color: {{ section.popup_bg_color }}; color: {{ section.popup_text_color }};'>
+    <div>
+        <div class='w-24 h-24 relative'>
+            <div class='absolute inset-0 w-full h-full rounded-full' style='background-color: {{ section.popup_product_image_bg_color }}'></div>
+
+            <div class='absolute bottom-10px left-1/2 transform -translate-x-1/2 w-full'>
+                {% include 'snippets/image.twig' with { 'image': section.popup_product_image, 'size': 'medium' } %}
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class='eyebrow1 mb-2 uppercase'>{{ section.popup_title }}</div>
+        <div class='body2'>{{ section.popup_description }}</div>
+    </div>
+    <div>
+        <a href='{{ section.popup_cta.url }}' class=' font-medium font-gotham-condensed text-24px leading-none uppercase py-3 px-5 border rounded-full' style='color: {{ section.popup_cta_color }}; border-color: {{ section.popup_cta_color }}' >{{ section.popup_cta.title }}</a>
+    </div>
+</div>

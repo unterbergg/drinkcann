@@ -1,0 +1,77 @@
+<section class='relative pt-16 pb-34 lg:pt-40 lg:pb-40' data-section='ingredients' style='color: {{ section.text_color }}; background-color: {{ section.background_color }};'>
+
+{# todo: move to the right block, add acf field #}
+{#    {% if options.image_third %}#}
+{#        <div class='#}
+{#                absolute#}
+{#                lg:left-1/2#}
+{#                lg:top-0#}
+{#                rotate-20#}
+{#                transform#}
+{#                w-[120px]#}
+{#                md:w-[195px]#}
+{#                h-[229px]#}
+{#                md:h-[378px]#}
+{#                z-20'#}
+{#        >#}
+{#            {% include 'snippets/image.twig' with { 'image': options.image_third, class: 'filter-shadow object-center object-cover block w-full h-full' } %}#}
+{#        </div>#}
+{#    {% endif %}#}
+
+
+
+    <div class='w-full overflow-hidden absolute inset-0 h-full'>
+
+        <div class='absolute lg:hidden block top-[29px] right-[25px] w-8'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+        <div class='absolute lg:hidden block top-[51px] left-[-53px] w-20'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+    </div>
+    <div class="overflow-hidden">
+        <div class='absolute top-px left-0 right-0 transform -translate-y-full lg:hidden block'>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 19" fill="none">
+                <path d="M187.261 6.19029C137.004 14.762 53.7629 25.3263 0 2.35262V19H374.003V11.3399C328.941 -2.5326 234.271 -1.82769 187.261 6.19029Z" fill="{{ section.background_color|default('#FAF6F9') }}"/>
+            </svg>
+        </div>
+        <div class='container mx-auto lg:px-4 px-2 flex lg:flex-row flex-col justify-end'>
+
+                <div class="absolute top-[35px] z-9 left-0 lg:block hidden">
+                    <svg width="825" height="615" viewBox="0 0 825 615" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="779" cy="83" r="45.25" stroke="#5E609D" stroke-width="1.5"/>
+                        <circle cx="59" cy="141" r="45.25" stroke="#5E609D" stroke-width="1.5"/>
+                        <circle cx="609" cy="129" r="17.25" stroke="#5E609D" stroke-width="1.5"/>
+                        <circle cx="690.464" cy="312.464" r="60.5307" transform="rotate(-2.07918 690.464 312.464)" stroke="#5E609D" stroke-width="1.5"/>
+                        <circle cx="267.464" cy="63.4636" r="60.5307" transform="rotate(-2.07918 267.464 63.4636)" stroke="#5E609D" stroke-width="1.5"/>
+                        <circle cx="428.691" cy="197.691" r="15.3665" transform="rotate(-2.07918 428.691 197.691)" stroke="#5E609D" stroke-width="1.5"/>
+                    </svg>
+                </div>
+
+            {% set img = Image(section.product_image) %}
+            <div class="lg:block hidden absolute top-0 bottom-0 left-0 right-0 bg-no-repeat bg-left-bottom z-20 "
+                 style="background-image: url('{{ img.src('full') }}')"></div>
+
+            <div class='lg:w-1/2 w-full flex flex-col z-20'>
+                <h6 class='text-center uppercase lg:mb-20 mb-11 lg:block text-center lg:text-8xl text-5.5xl font-gotham-condensed font-bold'>
+                    {{ section.heading }}
+                </h6>
+                <div class='flex flex-wrap justify-center'>
+                    {% for block in section.ingredients %}
+                        <div class="w-1/2 w-full text-center lg:mb-16 mb-14 lg:px-[21px] px-0">
+                            {{ fn('wp_get_attachment_image', block.icon, 'thumb', false, {'class':'h-[60px] w-[60px] mx-auto mb-[16px]'}) }}
+                            <p class="lg:text-[20px] text-[18px] uppercase text-center mx-auto font-gotham">
+                                {{ block.heading }}
+                            </p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+        {% include 'snippets/image.twig' with { 'image': section.product_image_mob, class: 'lg:hidden block w-full' } %}
+    </div>
+</section>

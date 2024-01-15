@@ -1,0 +1,56 @@
+<section class='relative pt-16 pb-24 lg:pt-24 lg:pb-40' data-section='ingredients' style='color: {{ section.text_color }}; background-color: {{ section.background_color }};'>
+
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full'>
+        <svg class='w-full' viewBox="0 0 1439 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M722.5 0C372.5 0 244.5 104.647 -1 19.367L-0.999985 92H1439V43.0853C1170 65.7242 1072.5 0 722.5 0Z" fill="{{ section.background_color }}"/>
+        </svg>
+    </div>
+
+    <div class='w-full overflow-hidden absolute inset-0 h-full'>
+
+        <div class='absolute lg:left-50px lg:top-100px w-12 top-60px -left-20px'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+        <div class='absolute -right-40px top-60px w-32 hidden lg:block'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+        <div class='hidden design:block absolute -left-25px lg:top-auto lg:bottom-250px top-480px w-20'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+        <div class='absolute lg:right-50px lg:bottom-80px -right-20px bottom-1/2 w-16'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+    </div>
+
+    <div class='container mx-auto px-4'>
+
+        <div class='text-center mb-8'>
+            <h5 class='h5 uppercase'>{{ section.heading }}</h5>
+        </div>
+
+        <div class='grid lg:grid-cols-3 lg:gap-0 gap-20 items-center lg:text-left text-center'>
+            <div class='grid gap-20 lg:gap-24 order-2 lg:order-2'>
+                {% for block in section.ingredients|slice(0, 2) %}
+                    {% include 'snippets/ingredient.twig' %}
+                {% endfor %}
+            </div>
+            <div class='relative order-1 lg:order-4'>
+                <div class='relative design:w-120p lg:left-1/2 lg:transform lg:-translate-x-1/2 w-full'>
+                    {% include 'snippets/image.twig' with { 'image': section.product_image, 'size': '1536x1536' } %}
+                </div>
+            </div>
+            <div class='grid gap-20 lg:gap-24 order-3 lg:order-6'>
+                {% for block in section.ingredients|slice(2, 4) %}
+                    {% include 'snippets/ingredient.twig' %}
+                {% endfor %}
+            </div>
+        </div>
+
+        
+    </div>
+
+</section>

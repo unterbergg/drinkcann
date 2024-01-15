@@ -1,0 +1,92 @@
+{
+    "key": "group_61eadf89a4c38",
+    "title": "Blog Colors",
+    "fields": [
+        {
+            "key": "field_61eadf89b1acc",
+            "label": "Primary Menu Text Color",
+            "name": "blog_primary_menu_text_color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "enable_opacity": 0,
+            "return_format": "string"
+        },
+        {
+            "key": "field_61eadf89b1ad8",
+            "label": "Secondary Menu Text Color",
+            "name": "blog_secondary_menu_text_color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "enable_opacity": 0,
+            "return_format": "string"
+        },
+        {
+            "key": "field_61eadf89b1ae0",
+            "label": "Megamenu Background Color (desktop)",
+            "name": "blog_megamenu_bg_color_desktop",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#FAF6F9",
+            "enable_opacity": 0,
+            "return_format": "string"
+        },
+        {
+            "key": "field_61eadf89b1ae8",
+            "label": "Megamenu Background Color (mobile)",
+            "name": "blog_megamenu_bg_color_mobile",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#E5D2E0",
+            "enable_opacity": 0,
+            "return_format": "string"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1642782633
+}

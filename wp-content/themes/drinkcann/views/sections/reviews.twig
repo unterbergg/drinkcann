@@ -1,0 +1,50 @@
+<section class='relative pt-16 pb-24 lg:pt-24 lg:pb-40' data-section='reviews' style='color: {{ section.text_color }}; background-color: {{ section.background_color }};'>
+
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full'>
+        <svg class='w-full' viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M721 28.3988C527.5 70.958 207 123.411 0 9.34447V92H1440V53.9669C1266.5 -14.911 902 -11.4111 721 28.3988Z" fill="{{ section.background_color }}" />
+        </svg>
+    </div>
+
+    <div class='absolute inset-0 w-full h-full overflow-hidden'>
+
+        <div class='absolute lg:right-80px lg:top-60px w-24 top-60px right-20px hidden lg:block'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+        <div class='absolute lg:right-200px lg:top-150px w-10 hidden lg:block'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+        <div class='absolute -left-25px lg:top-250px top-100px w-24 hidden lg:block'>
+            {% include 'snippets/circle.twig' with { 'color': section.text_color }  %}
+        </div>
+
+    </div>
+
+    <div class='container mx-auto px-4 relative z-10 lg:text-left text-center'>
+        <h2 class='h2 uppercase'>{{ section.heading }}</h2>
+    </div>
+
+    <div class='h-auto'>
+
+        <div class="container mx-auto px-4">
+
+
+        <div id="stamped-main-widget"
+             data-product-id="{{post.ID}}"
+             data-name="{{post.post_title}}"
+             data-url="{{post.link}}"
+             data-image-url="{{ Image(post.custom.card_image).src }}"
+             data-description="##product.description##"
+             data-product-sku="{{ post.custom.grassdoor_product_id }}">
+        </div>
+
+            <p style="z-index:9999;" class="relative z-100 text-center">by submitting your review you agree to our <a target=_blank" href="https://shop.drinkcann.com/termsandconditions">terms of use</a></p>
+
+        </div>
+
+        {# TODO: pull in reviews content #}
+    </div>
+
+</section>

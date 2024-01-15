@@ -1,0 +1,25 @@
+<style>
+    .blog-nav {
+        background-color: {{ options.blog_megamenu_bg_color_mobile }};
+        border-color: {{ options.blog_primary_menu_text_color }};
+        color: {{ options.blog_primary_menu_text_color }};
+    }
+
+    @media (min-width: 1024px) {
+        .blog-nav {
+            background-color: {{ options.blog_megamenu_bg_color_desktop }};
+        }
+    }
+</style>
+<div class='border-t border-b eyebrow1 uppercase fixed left-0 right-0 w-full z-30 blog-nav overflow-hidden'>
+    <ul class='flex lg:justify-center overflow-x-scroll hide-scrollbar js-category-nav-container category-nav-container'>
+
+            {% for cat in categories %}
+                <li class='py-6 px-8 js-category-nav category-nav relative whitespace-nowrap {% if cat_active == cat.slug %}active order-first lg:order-none{% endif %}' data-id='{{ cat.slug }}'>
+                    <a href='{{ cat.url }}'>{{ cat.name }}</a>
+                </li>
+            {% endfor %}
+
+    </ul>
+</div>
+

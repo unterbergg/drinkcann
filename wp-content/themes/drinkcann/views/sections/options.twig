@@ -1,0 +1,62 @@
+{% set color = section.text_color|trim('#', 'left')|upper %}
+
+<style>
+    [data-id='{{ section.acf_fc_layout }}-{{ loop.index0 }}'] .has-underline u:after {
+        background-image: url("data:image/svg+xml,<svg width='52' height='10' viewBox='0 0 52 10' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M26.3456 5.5155C19.8495 0.496856 10.2374 1.20194 0 6.47465V4.4622C10.5562 -0.974704 20.1801 -1.77683 27.5464 3.91414C30.8728 6.48396 34.3418 7.8579 38.203 7.97617C42.0826 8.09501 46.8952 7.09206 52 4.46288V6.47534C46.708 9.20097 42.4583 10.1199 38.1432 9.98771C33.8097 9.85497 29.9504 8.30049 26.3456 5.5155Z' fill='{{ section.bg_color | url_encode }}'/></svg>");
+    }
+</style>
+
+<div class='pt-16 pb-24 lg:pb-48 relative' data-section='highlights' style='color: {{ section.text_color }}; background-color: {{ section.background_color }}' data-id='{{ section.acf_fc_layout }}-{{ loop.index0 }}'>
+
+    <div class='absolute top-px left-0 right-0 transform -translate-y-full'>
+        <svg class='w-full' viewBox="0 0 1440 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M719 24.7418C912.5 61.8206 1233 107.519 1440 8.14117V92H0V47.0174C173.5 -12.9909 538 -9.94165 719 24.7418Z" fill="{{ section.background_color }}" />
+        </svg>
+    </div>
+
+    <div class='overflow-hidden absolute inset-0 w-full h-full'>
+
+        <div class='absolute right-100px top-60px w-16 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute left-100px top-350px w-8 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute lg:-left-25px bottom-200px w-16 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+        <div class='absolute lg:-right-100px bottom-300px w-40 lg:block hidden'>
+            {% include 'snippets/circle.twig' %}
+        </div>
+
+    </div>
+
+    <div class='relative z-20'>
+
+        <div class='container mx-auto px-4'>
+            <div class='grid lg:grid-cols-3 gap-12'>
+
+                {% for option in section.options %}
+                    <div class='text-center'>
+                        <div class='w-64 lg:w-full mx-auto'>
+                                <div class='w-24 mx-auto mb-8'>
+                                    {% include 'snippets/image.twig' with { 'image': option.option_icon, 'size': '1536x1536' } %}
+                                </div>
+                                <div class='mb-4 uppercase font-gotham-condensed font-medium text-36px lg:text-56px leading-none'>
+                                    {{ option.option_title }}
+                                </div>
+                                <div class='body2 lg:body1 lg:w-2/3 mx-auto w-full'>
+                                    {{ option.option_content }}
+                                </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+</div>

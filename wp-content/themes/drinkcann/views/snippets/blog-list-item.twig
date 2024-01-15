@@ -1,0 +1,92 @@
+<li class='{{ class }}'>
+  <a
+    class="
+      flex
+      flex-col
+      h-full
+    "
+    href="{{ blog_item.link }}"
+  >
+    <div
+      class="
+        relative
+        pt-[134.2%]
+        w-full
+        rounded-[4px]
+        overflow-hidden
+      "
+    >
+        {% include 'snippets/image.twig' with { 'image': blog_item.thumbnail, 'size': '2048x2048', 'fill': 'image-fill' } %}
+
+      {% if blog_item.terms %}
+        <div
+          class="
+            blog_item-label
+            eyebrow2
+            absolute
+            top-[20px]
+            left-[20px]
+            z-[5]
+            flex
+            items-center
+            px-[15px]
+            h-[32px]
+            text-center
+            border-[1px]
+            border-solid
+            rounded-[16px]
+            uppercase
+          "
+          style="
+            color: {{ color_primary }};
+            background-color: {{ color_secondary }};
+            border-color: {{ color_secondary }};
+            box-shadow: 4px 4px 40px 0 rgba(0, 0, 0, 0.08);
+          "
+        >
+          {{ blog_item.terms[0].name }}
+        </div>
+      {% endif %}
+
+    </div>
+    <h4
+      class="
+        h4
+        mt-[26px]
+        md:mt-[30px]
+        uppercase
+      "
+      style="
+        color: {{ color_primary }};
+      "
+    >
+      {{ blog_item.title }}
+    </h2>
+    {% if blog_item.preview != '' %}
+        <p
+        class="
+            body2
+            mt-[8px]
+        "
+        style="
+            color: {{ color_primary }};
+        "
+        >
+        {{ blog_item.preview.read_more('')|striptags }}
+        </p>
+    {% endif %}
+    <div
+      class="
+        cta
+        mt-[20px]
+        md:mt-[16px]
+        uppercase
+      "
+      style="
+        color: {{ color_primary }};
+      "
+    >
+      by {{ blog_item.author }}
+    </div>
+  </a>
+</li>
